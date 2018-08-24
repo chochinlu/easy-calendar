@@ -3,11 +3,8 @@
 
 var React = require("react");
 var ReasonReact = require("reason-react/src/ReasonReact.js");
-var Days$ReactTemplate = require("./Days.bs.js");
-var Cells$ReactTemplate = require("./Cells.bs.js");
-var Header$ReactTemplate = require("./Header.bs.js");
 
-var component = ReasonReact.statelessComponent("Calendar");
+var component = ReasonReact.statelessComponent("Header");
 
 function make() {
   return /* record */[
@@ -21,9 +18,7 @@ function make() {
           /* willUpdate */component[/* willUpdate */7],
           /* shouldUpdate */component[/* shouldUpdate */8],
           /* render */(function () {
-              return React.createElement("div", {
-                          className: "bordered responsive-margin"
-                        }, ReasonReact.element(undefined, undefined, Header$ReactTemplate.make(/* array */[])), ReasonReact.element(undefined, undefined, Days$ReactTemplate.make(/* array */[])), ReasonReact.element(undefined, undefined, Cells$ReactTemplate.make(/* array */[])));
+              return React.createElement("div", undefined, React.createElement("h2", undefined, "這個月"), React.createElement("button", undefined, "上個月"), React.createElement("button", undefined, "下個月"));
             }),
           /* initialState */component[/* initialState */10],
           /* retainedProps */component[/* retainedProps */11],
