@@ -1,1 +1,1 @@
-ReactDOMRe.renderToElementWithId(<App message="Hello!" />, "app");
+ReactDOMRe.renderToElementWithId(<App message="Easy Calendar" />, "app");

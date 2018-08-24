@@ -3,11 +3,10 @@
 
 var React = require("react");
 var ReasonReact = require("reason-react/src/ReasonReact.js");
-var Calendar$ReactTemplate = require("./Calendar.bs.js");
 
-var component = ReasonReact.statelessComponent("App");
+var component = ReasonReact.statelessComponent("Calendar");
 
-function make(message, _) {
+function make() {
   return /* record */[
           /* debugName */component[/* debugName */0],
           /* reactClassInternal */component[/* reactClassInternal */1],
@@ -19,7 +18,9 @@ function make(message, _) {
           /* willUpdate */component[/* willUpdate */7],
           /* shouldUpdate */component[/* shouldUpdate */8],
           /* render */(function () {
-              return React.createElement("div", undefined, React.createElement("h1", undefined, message), ReasonReact.element(undefined, undefined, Calendar$ReactTemplate.make(/* array */[])));
+              return React.createElement("div", {
+                          className: "bordered responsive-margin"
+                        }, React.createElement("h2", undefined, "Header"), React.createElement("h2", undefined, "Days"), React.createElement("h2", undefined, "Cell"));
             }),
           /* initialState */component[/* initialState */10],
           /* retainedProps */component[/* retainedProps */11],
