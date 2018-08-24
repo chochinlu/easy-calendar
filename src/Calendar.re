@@ -6,6 +6,6 @@ let make = _children => {
     <div className="bordered responsive-margin">
       <Header />
       <Days />
-      <h2> (ReasonReact.string("Cell")) </h2>
+      <Cells />
     </div>,
 };
