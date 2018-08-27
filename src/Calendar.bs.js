@@ -7,6 +7,28 @@ var Days$ReactTemplate = require("./Days.bs.js");
 var Cells$ReactTemplate = require("./Cells.bs.js");
 var Header$ReactTemplate = require("./Header.bs.js");
 
+function floatStr(str) {
+  return String(str | 0);
+}
+
+function dayInfo(someDay) {
+  var str = someDay.getUTCFullYear();
+  var year = String(str | 0);
+  var str$1 = someDay.getUTCMonth() + 1.0;
+  var month = String(str$1 | 0);
+  var str$2 = someDay.getUTCDate();
+  var date = String(str$2 | 0);
+  var dayStr = year + ("-" + (month + ("-" + date)));
+  return /* record */[
+          /* year */year,
+          /* month */month,
+          /* date */date,
+          /* str */dayStr
+        ];
+}
+
+var today = dayInfo(new Date());
+
 var component = ReasonReact.statelessComponent("Calendar");
 
 function make() {
@@ -23,7 +45,7 @@ function make() {
           /* render */(function () {
               return React.createElement("div", {
                           className: "bordered responsive-margin"
-                        }, ReasonReact.element(undefined, undefined, Header$ReactTemplate.make(/* array */[])), ReasonReact.element(undefined, undefined, Days$ReactTemplate.make(/* array */[])), ReasonReact.element(undefined, undefined, Cells$ReactTemplate.make(/* array */[])));
+                        }, ReasonReact.element(undefined, undefined, Header$ReactTemplate.make(today[/* str */3], /* array */[])), ReasonReact.element(undefined, undefined, Days$ReactTemplate.make(/* array */[])), ReasonReact.element(undefined, undefined, Cells$ReactTemplate.make(/* array */[])));
             }),
           /* initialState */component[/* initialState */10],
           /* retainedProps */component[/* retainedProps */11],
@@ -32,6 +54,9 @@ function make() {
         ];
 }
 
+exports.floatStr = floatStr;
+exports.dayInfo = dayInfo;
+exports.today = today;
 exports.component = component;
 exports.make = make;
-/* component Not a pure module */
+/* today Not a pure module */
