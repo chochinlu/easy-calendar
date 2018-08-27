@@ -3,18 +3,21 @@
 
 let component = ReasonReact.statelessComponent("Cells");
 
+/* cells mockup */
 let cellEle = (_: string) =>
   <div className="col-sm card"> (ReasonReact.string("day")) </div>;
 
 let cellEleRow = "" |> cellEle |> ArrayLabels.make(7);
 
-let renderDays = () => {
-  Js.log("render days");
-  let someTest = 2018 |> string_of_int |> startOfWeek |> DayUtil.dayInfo;
+/* render real days  */
+let renderDays = (today: DayUtil.day) => {
+  let year = today.year |> float_of_int |> string_of_float;
+  let month = today.month |> float_of_int |> string_of_float;
+  let someTest = year ++ month |> startOfWeek |> DayUtil.dayInfo;
   Js.log(someTest);
 };
 
-let make = (~currentMonth, _children) => {
+let make = (~currentMonth, ~today, _children) => {
   ...component,
   render: _ =>
     <div className="container">
@@ -23,7 +26,7 @@ let make = (~currentMonth, _children) => {
       <div className="row"> ...cellEleRow </div>
       <div className="row"> ...cellEleRow </div>
       <div className="row"> ...cellEleRow </div>
-      <button onClick=(_e => renderDays())>
+      <button onClick=(_e => renderDays(today))>
         (
           currentMonth
           |> string_of_int

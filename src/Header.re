@@ -1,11 +1,15 @@
 let component = ReasonReact.statelessComponent("Header");
 
+let yearMonth = (year: int, month: int) : string =>
+  (year |> string_of_int) ++ "-" ++ (month |> string_of_int);
+
 let make =
     (
       ~today,
       ~handleShow,
       ~show,
       ~currentMonth,
+      ~currentYear,
       ~clickPrev,
       ~clickNext,
       ~clickCurrent,
@@ -15,7 +19,7 @@ let make =
   render: _self =>
     <div>
       <p> (today |> (t => {j|今日: |j} ++ t |> ReasonReact.string)) </p>
-      <h2> (currentMonth |> string_of_int |> ReasonReact.string) </h2>
+      <h2> (yearMonth(currentYear, currentMonth) |> ReasonReact.string) </h2>
       <button onClick=clickPrev>
         (ReasonReact.string({j|上個月|j}))
       </button>

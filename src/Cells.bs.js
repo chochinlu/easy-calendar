@@ -4,6 +4,7 @@
 var React = require("react");
 var DateFns = require("date-fns");
 var Caml_array = require("bs-platform/lib/js/caml_array.js");
+var Pervasives = require("bs-platform/lib/js/pervasives.js");
 var ReactDOMRe = require("reason-react/src/ReactDOMRe.js");
 var ReasonReact = require("reason-react/src/ReasonReact.js");
 var DayUtil$ReactTemplate = require("./DayUtil.bs.js");
@@ -18,14 +19,15 @@ function cellEle() {
 
 var cellEleRow = Caml_array.caml_make_vect(7, cellEle(""));
 
-function renderDays() {
-  console.log("render days");
-  var someTest = DayUtil$ReactTemplate.dayInfo(DateFns.startOfWeek(String(2018)));
+function renderDays(today) {
+  var year = Pervasives.string_of_float(today[/* year */0]);
+  var month = Pervasives.string_of_float(today[/* month */1]);
+  var someTest = DayUtil$ReactTemplate.dayInfo(DateFns.startOfWeek(year + month));
   console.log(someTest);
   return /* () */0;
 }
 
-function make(currentMonth, _) {
+function make(currentMonth, today, _) {
   return /* record */[
           /* debugName */component[/* debugName */0],
           /* reactClassInternal */component[/* reactClassInternal */1],
@@ -51,7 +53,7 @@ function make(currentMonth, _) {
                               className: "row"
                             }, cellEleRow), React.createElement("button", {
                               onClick: (function () {
-                                  return renderDays(/* () */0);
+                                  return renderDays(today);
                                 })
                             }, "current month: " + String(currentMonth)));
             }),
