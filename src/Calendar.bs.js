@@ -8,29 +8,9 @@ var ReasonReact = require("reason-react/src/ReasonReact.js");
 var Days$ReactTemplate = require("./Days.bs.js");
 var Cells$ReactTemplate = require("./Cells.bs.js");
 var Header$ReactTemplate = require("./Header.bs.js");
+var DayUtil$ReactTemplate = require("./DayUtil.bs.js");
 
-function floatStr(str) {
-  return String(str | 0);
-}
-
-function getDayStr(year, month, date) {
-  return String(year) + ("-" + (String(month) + ("-" + String(date))));
-}
-
-function dayInfo(someDay) {
-  var year = someDay.getUTCFullYear() | 0;
-  var month = someDay.getUTCMonth() + 1.0 | 0;
-  var date = someDay.getUTCDate() | 0;
-  var dayStr = getDayStr(year, month, date);
-  return /* record */[
-          /* year */year,
-          /* month */month,
-          /* date */date,
-          /* str */dayStr
-        ];
-}
-
-var today = dayInfo(new Date());
+var today = DayUtil$ReactTemplate.dayInfo(new Date());
 
 var component = ReasonReact.reducerComponent("Calendar");
 
@@ -56,7 +36,7 @@ function make() {
                                     return Curry._1(self[/* send */3], /* NextMonth */2);
                                   }), (function () {
                                     return Curry._1(self[/* send */3], /* ThisMonth */3);
-                                  }), /* array */[])), ReasonReact.element(undefined, undefined, Days$ReactTemplate.make(/* array */[])), ReasonReact.element(undefined, undefined, Cells$ReactTemplate.make(/* array */[])));
+                                  }), /* array */[])), ReasonReact.element(undefined, undefined, Days$ReactTemplate.make(/* array */[])), ReasonReact.element(undefined, undefined, Cells$ReactTemplate.make(self[/* state */1][/* currentMonth */1], /* array */[])));
             }),
           /* initialState */(function () {
               return /* record */[
@@ -100,9 +80,6 @@ function make() {
         ];
 }
 
-exports.floatStr = floatStr;
-exports.getDayStr = getDayStr;
-exports.dayInfo = dayInfo;
 exports.today = today;
 exports.component = component;
 exports.make = make;

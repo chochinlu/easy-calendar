@@ -2,9 +2,11 @@
 'use strict';
 
 var React = require("react");
+var DateFns = require("date-fns");
 var Caml_array = require("bs-platform/lib/js/caml_array.js");
 var ReactDOMRe = require("reason-react/src/ReactDOMRe.js");
 var ReasonReact = require("reason-react/src/ReasonReact.js");
+var DayUtil$ReactTemplate = require("./DayUtil.bs.js");
 
 var component = ReasonReact.statelessComponent("Cells");
 
@@ -16,7 +18,14 @@ function cellEle() {
 
 var cellEleRow = Caml_array.caml_make_vect(7, cellEle(""));
 
-function make() {
+function renderDays() {
+  console.log("render days");
+  var someTest = DayUtil$ReactTemplate.dayInfo(DateFns.startOfWeek(String(2018)));
+  console.log(someTest);
+  return /* () */0;
+}
+
+function make(currentMonth, _) {
   return /* record */[
           /* debugName */component[/* debugName */0],
           /* reactClassInternal */component[/* reactClassInternal */1],
@@ -40,7 +49,11 @@ function make() {
                               className: "row"
                             }, cellEleRow), ReactDOMRe.createElementVariadic("div", {
                               className: "row"
-                            }, cellEleRow));
+                            }, cellEleRow), React.createElement("button", {
+                              onClick: (function () {
+                                  return renderDays(/* () */0);
+                                })
+                            }, "current month: " + String(currentMonth)));
             }),
           /* initialState */component[/* initialState */10],
           /* retainedProps */component[/* retainedProps */11],
@@ -52,5 +65,6 @@ function make() {
 exports.component = component;
 exports.cellEle = cellEle;
 exports.cellEleRow = cellEleRow;
+exports.renderDays = renderDays;
 exports.make = make;
 /* component Not a pure module */

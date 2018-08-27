@@ -29,9 +29,9 @@ function make(today, handleShow, show, currentMonth, clickPrev, clickNext, click
                                   console.log("oh");
                                   return /* () */0;
                                 })
-                            }, "show"), React.createElement("button", {
+                            }, "show console log"), React.createElement("button", {
                               onClick: handleShow
-                            }, "show2"), React.createElement("h2", undefined, show ? "hi" : null));
+                            }, "show/hide msg"), React.createElement("h2", undefined, show ? "hi" : null));
             }),
           /* initialState */component[/* initialState */10],
           /* retainedProps */component[/* retainedProps */11],
