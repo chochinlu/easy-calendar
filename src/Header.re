@@ -1,13 +1,26 @@
 let component = ReasonReact.statelessComponent("Header");
 
-let make = (~today, ~handleShow, ~show, _children) => {
+let make =
+    (
+      ~today,
+      ~handleShow,
+      ~show,
+      ~currentMonth,
+      ~clickPrev,
+      ~clickNext,
+      _children,
+    ) => {
   ...component,
-  render: self =>
+  render: _self =>
     <div>
       <p> (today |> (t => {j|今日: |j} ++ t |> ReasonReact.string)) </p>
-      <h2> (ReasonReact.string({j|這個月|j})) </h2>
-      <button> (ReasonReact.string({j|上個月|j})) </button>
-      <button> (ReasonReact.string({j|下個月|j})) </button>
+      <h2> (currentMonth |> string_of_int |> ReasonReact.string) </h2>
+      <button onClick=clickPrev>
+        (ReasonReact.string({j|上個月|j}))
+      </button>
+      <button onClick=clickNext>
+        (ReasonReact.string({j|下個月|j}))
+      </button>
       <button onClick=(_e => Js.log("oh"))>
         (ReasonReact.string("show"))
       </button>

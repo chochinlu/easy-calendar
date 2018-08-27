@@ -13,14 +13,15 @@ function floatStr(str) {
   return String(str | 0);
 }
 
+function getDayStr(year, month, date) {
+  return String(year) + ("-" + (String(month) + ("-" + String(date))));
+}
+
 function dayInfo(someDay) {
-  var str = someDay.getUTCFullYear();
-  var year = String(str | 0);
-  var str$1 = someDay.getUTCMonth() + 1.0;
-  var month = String(str$1 | 0);
-  var str$2 = someDay.getUTCDate();
-  var date = String(str$2 | 0);
-  var dayStr = year + ("-" + (month + ("-" + date)));
+  var year = someDay.getUTCFullYear() | 0;
+  var month = someDay.getUTCMonth() + 1.0 | 0;
+  var date = someDay.getUTCDate() | 0;
+  var dayStr = getDayStr(year, month, date);
   return /* record */[
           /* year */year,
           /* month */month,
@@ -49,20 +50,45 @@ function make() {
                           className: "bordered responsive-margin"
                         }, ReasonReact.element(undefined, undefined, Header$ReactTemplate.make(today[/* str */3], (function () {
                                     return Curry._1(self[/* send */3], /* Show */0);
-                                  }), self[/* state */1][/* show */0], /* array */[])), ReasonReact.element(undefined, undefined, Days$ReactTemplate.make(/* array */[])), ReasonReact.element(undefined, undefined, Cells$ReactTemplate.make(/* array */[])));
+                                  }), self[/* state */1][/* show */0], self[/* state */1][/* currentMonth */1], (function () {
+                                    return Curry._1(self[/* send */3], /* PrevMonth */1);
+                                  }), (function () {
+                                    return Curry._1(self[/* send */3], /* NextMonth */2);
+                                  }), /* array */[])), ReasonReact.element(undefined, undefined, Days$ReactTemplate.make(/* array */[])), ReasonReact.element(undefined, undefined, Cells$ReactTemplate.make(/* array */[])));
             }),
           /* initialState */(function () {
-              return /* record */[/* show */false];
+              return /* record */[
+                      /* show */false,
+                      /* currentMonth */today[/* month */1]
+                    ];
             }),
           /* retainedProps */component[/* retainedProps */11],
-          /* reducer */(function (_, state) {
-              return /* Update */Block.__(0, [/* record */[/* show */!state[/* show */0]]]);
+          /* reducer */(function (action, state) {
+              switch (action) {
+                case 0 : 
+                    return /* Update */Block.__(0, [/* record */[
+                                /* show */!state[/* show */0],
+                                /* currentMonth */state[/* currentMonth */1]
+                              ]]);
+                case 1 : 
+                    return /* Update */Block.__(0, [/* record */[
+                                /* show */state[/* show */0],
+                                /* currentMonth */state[/* currentMonth */1] - 1 | 0
+                              ]]);
+                case 2 : 
+                    return /* Update */Block.__(0, [/* record */[
+                                /* show */state[/* show */0],
+                                /* currentMonth */state[/* currentMonth */1] + 1 | 0
+                              ]]);
+                
+              }
             }),
           /* jsElementWrapped */component[/* jsElementWrapped */13]
         ];
 }
 
 exports.floatStr = floatStr;
+exports.getDayStr = getDayStr;
 exports.dayInfo = dayInfo;
 exports.today = today;
 exports.component = component;
