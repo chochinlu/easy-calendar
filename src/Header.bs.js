@@ -6,7 +6,7 @@ var ReasonReact = require("reason-react/src/ReasonReact.js");
 
 var component = ReasonReact.statelessComponent("Header");
 
-function make(today, _) {
+function make(today, handleShow, show, _) {
   return /* record */[
           /* debugName */component[/* debugName */0],
           /* reactClassInternal */component[/* reactClassInternal */1],
@@ -18,7 +18,14 @@ function make(today, _) {
           /* willUpdate */component[/* willUpdate */7],
           /* shouldUpdate */component[/* shouldUpdate */8],
           /* render */(function () {
-              return React.createElement("div", undefined, React.createElement("p", undefined, "今日: " + today), React.createElement("h2", undefined, "這個月"), React.createElement("button", undefined, "上個月"), React.createElement("button", undefined, "下個月"));
+              return React.createElement("div", undefined, React.createElement("p", undefined, "今日: " + today), React.createElement("h2", undefined, "這個月"), React.createElement("button", undefined, "上個月"), React.createElement("button", undefined, "下個月"), React.createElement("button", {
+                              onClick: (function () {
+                                  console.log("oh");
+                                  return /* () */0;
+                                })
+                            }, "show"), React.createElement("button", {
+                              onClick: handleShow
+                            }, "show2"), React.createElement("h2", undefined, show ? "hi" : null));
             }),
           /* initialState */component[/* initialState */10],
           /* retainedProps */component[/* retainedProps */11],

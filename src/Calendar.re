@@ -18,13 +18,27 @@ let dayInfo = (someDay: Js.Date.t) : day => {
 
 let today = Js.Date.make() |> dayInfo;
 
-let component = ReasonReact.statelessComponent("Calendar");
+type state = {show: bool};
+
+type action =
+  | Show;
+
+let component = ReasonReact.reducerComponent("Calendar");
 
 let make = _children => {
   ...component,
-  render: _ =>
+  initialState: () => {show: false},
+  reducer: (action, state) =>
+    switch (action) {
+    | Show => ReasonReact.Update({show: ! state.show})
+    },
+  render: self =>
     <div className="bordered responsive-margin">
-      <Header today=today.str />
+      <Header
+        today=today.str
+        handleShow=(_evt => self.send(Show))
+        show=self.state.show
+      />
       <Days />
       <Cells />
     </div>,

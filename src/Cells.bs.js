@@ -32,6 +32,14 @@ function make() {
                           className: "container"
                         }, ReactDOMRe.createElementVariadic("div", {
                               className: "row"
+                            }, cellEleRow), ReactDOMRe.createElementVariadic("div", {
+                              className: "row"
+                            }, cellEleRow), ReactDOMRe.createElementVariadic("div", {
+                              className: "row"
+                            }, cellEleRow), ReactDOMRe.createElementVariadic("div", {
+                              className: "row"
+                            }, cellEleRow), ReactDOMRe.createElementVariadic("div", {
+                              className: "row"
                             }, cellEleRow));
             }),
           /* initialState */component[/* initialState */10],
