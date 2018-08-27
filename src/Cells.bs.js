@@ -3,6 +3,7 @@
 
 var React = require("react");
 var Caml_array = require("bs-platform/lib/js/caml_array.js");
+var ReactDOMRe = require("reason-react/src/ReactDOMRe.js");
 var ReasonReact = require("reason-react/src/ReasonReact.js");
 
 var component = ReasonReact.statelessComponent("Cells");
@@ -14,8 +15,6 @@ function cellEle() {
 }
 
 var cellEleRow = Caml_array.caml_make_vect(7, cellEle(""));
-
-var cells = Caml_array.caml_make_vect(5, "");
 
 function make() {
   return /* record */[
@@ -31,13 +30,7 @@ function make() {
           /* render */(function () {
               return React.createElement("div", {
                           className: "container"
-                        }, React.createElement("div", {
-                              className: "row"
-                            }, cellEleRow), React.createElement("div", {
-                              className: "row"
-                            }, cellEleRow), React.createElement("div", {
-                              className: "row"
-                            }, cellEleRow), React.createElement("div", {
+                        }, ReactDOMRe.createElementVariadic("div", {
                               className: "row"
                             }, cellEleRow));
             }),
@@ -51,6 +44,5 @@ function make() {
 exports.component = component;
 exports.cellEle = cellEle;
 exports.cellEleRow = cellEleRow;
-exports.cells = cells;
 exports.make = make;
 /* component Not a pure module */
