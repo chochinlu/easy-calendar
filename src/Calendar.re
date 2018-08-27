@@ -45,9 +45,11 @@ let make = _children => {
     switch (action) {
     | Show => ReasonReact.Update({...state, show: ! state.show})
     | PrevMonth =>
-      ReasonReact.Update({...state, currentMonth: state.currentMonth - 1})
+      let month = state.currentMonth - 1 |> (e => e < 1 ? 1 : e);
+      ReasonReact.Update({...state, currentMonth: month});
     | NextMonth =>
-      ReasonReact.Update({...state, currentMonth: state.currentMonth + 1})
+      let month = state.currentMonth + 1 |> (e => e > 12 ? 12 : e);
+      ReasonReact.Update({...state, currentMonth: month});
     | ThisMonth => ReasonReact.Update({...state, currentMonth: today.month})
     },
   render: self =>

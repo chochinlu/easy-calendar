@@ -73,14 +73,20 @@ function make() {
                                 /* currentMonth */state[/* currentMonth */1]
                               ]]);
                 case 1 : 
+                    var e = state[/* currentMonth */1] - 1 | 0;
+                    var match = e < 1;
+                    var month = match ? 1 : e;
                     return /* Update */Block.__(0, [/* record */[
                                 /* show */state[/* show */0],
-                                /* currentMonth */state[/* currentMonth */1] - 1 | 0
+                                /* currentMonth */month
                               ]]);
                 case 2 : 
+                    var e$1 = state[/* currentMonth */1] + 1 | 0;
+                    var match$1 = e$1 > 12;
+                    var month$1 = match$1 ? 12 : e$1;
                     return /* Update */Block.__(0, [/* record */[
                                 /* show */state[/* show */0],
-                                /* currentMonth */state[/* currentMonth */1] + 1 | 0
+                                /* currentMonth */month$1
                               ]]);
                 case 3 : 
                     return /* Update */Block.__(0, [/* record */[
