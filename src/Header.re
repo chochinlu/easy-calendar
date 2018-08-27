@@ -26,9 +26,11 @@ let make =
         (ReasonReact.string({j|下個月|j}))
       </button>
       <button onClick=(_e => Js.log("oh"))>
-        (ReasonReact.string("show"))
+        (ReasonReact.string("show console log"))
       </button>
-      <button onClick=handleShow> (ReasonReact.string("show2")) </button>
+      <button onClick=handleShow>
+        (ReasonReact.string("show/hide msg"))
+      </button>
       <h2> (show ? ReasonReact.string("hi") : ReasonReact.null) </h2>
     </div>,
 };
