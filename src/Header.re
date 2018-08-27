@@ -8,6 +8,7 @@ let make =
       ~currentMonth,
       ~clickPrev,
       ~clickNext,
+      ~clickCurrent,
       _children,
     ) => {
   ...component,
@@ -17,6 +18,9 @@ let make =
       <h2> (currentMonth |> string_of_int |> ReasonReact.string) </h2>
       <button onClick=clickPrev>
         (ReasonReact.string({j|上個月|j}))
+      </button>
+      <button onClick=clickCurrent>
+        (ReasonReact.string({j|這個月|j}))
       </button>
       <button onClick=clickNext>
         (ReasonReact.string({j|下個月|j}))

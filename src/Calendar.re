@@ -33,7 +33,8 @@ type state = {
 type action =
   | Show
   | PrevMonth
-  | NextMonth;
+  | NextMonth
+  | ThisMonth;
 
 let component = ReasonReact.reducerComponent("Calendar");
 
@@ -47,6 +48,7 @@ let make = _children => {
       ReasonReact.Update({...state, currentMonth: state.currentMonth - 1})
     | NextMonth =>
       ReasonReact.Update({...state, currentMonth: state.currentMonth + 1})
+    | ThisMonth => ReasonReact.Update({...state, currentMonth: today.month})
     },
   render: self =>
     <div className="bordered responsive-margin">
@@ -57,6 +59,7 @@ let make = _children => {
         handleShow=(_evt => self.send(Show))
         clickPrev=(_evt => self.send(PrevMonth))
         clickNext=(_evt => self.send(NextMonth))
+        clickCurrent=(_evt => self.send(ThisMonth))
       />
       <Days />
       <Cells />
