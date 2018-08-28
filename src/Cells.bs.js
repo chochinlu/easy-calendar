@@ -5,6 +5,7 @@ var $$Array = require("bs-platform/lib/js/array.js");
 var React = require("react");
 var DateFns = require("date-fns");
 var Caml_array = require("bs-platform/lib/js/caml_array.js");
+var Caml_int32 = require("bs-platform/lib/js/caml_int32.js");
 var ReactDOMRe = require("reason-react/src/ReactDOMRe.js");
 var ReasonReact = require("reason-react/src/ReasonReact.js");
 var DayUtil$ReactTemplate = require("./DayUtil.bs.js");
@@ -19,16 +20,24 @@ function cellEle() {
 
 var cellEleRow = Caml_array.caml_make_vect(7, cellEle(""));
 
-function renderDays(param) {
-  var startDay = DateFns.startOfWeek($$Array.fold_left((function (a, b) {
-              return a + ("-" + b);
-            }), "", $$Array.map((function (prim) {
-                  return String(prim);
-                }), /* array */[
-                param[0],
-                param[1]
-              ])));
-  console.log(startDay);
+function firstStartDay(param) {
+  return DateFns.startOfWeek($$Array.fold_left((function (a, b) {
+                    return a + ("-" + b);
+                  }), "", $$Array.map((function (prim) {
+                        return String(prim);
+                      }), /* array */[
+                      param[0],
+                      param[1]
+                    ])));
+}
+
+function getStartDays(startDay) {
+  return $$Array.mapi((function (x, _) {
+                return DateFns.addDays(startDay, Caml_int32.imul(7, x));
+              }), Caml_array.caml_make_vect(5, startDay));
+}
+
+function getOneWeekDays(startDay) {
   return $$Array.mapi((function (x, _) {
                 return DayUtil$ReactTemplate.dayInfo(DateFns.addDays(startDay, x));
               }), Caml_array.caml_make_vect(7, /* record */[
@@ -47,6 +56,19 @@ function renderWeekRow(renderDays) {
               }), renderDays);
 }
 
+function renderOneWeek(weekDays) {
+  return ReactDOMRe.createElementVariadic("div", {
+              className: "row"
+            }, weekDays);
+}
+
+function renderDays(param) {
+  return $$Array.map(renderOneWeek, $$Array.map(renderWeekRow, $$Array.map(getOneWeekDays, getStartDays(firstStartDay(/* tuple */[
+                              param[0],
+                              param[1]
+                            ])))));
+}
+
 function make(currentMonth, currentYear, _) {
   return /* record */[
           /* debugName */component[/* debugName */0],
@@ -61,14 +83,12 @@ function make(currentMonth, currentYear, _) {
           /* render */(function () {
               return React.createElement("div", {
                           className: "container"
-                        }, ReactDOMRe.createElementVariadic("div", {
-                              className: "row"
-                            }, renderWeekRow(renderDays(/* tuple */[
-                                      currentYear,
-                                      currentMonth
-                                    ]))), React.createElement("button", {
+                        }, renderDays(/* tuple */[
+                              currentYear,
+                              currentMonth
+                            ]), React.createElement("button", {
                               onClick: (function () {
-                                  console.log(renderDays(/* tuple */[
+                                  console.log(firstStartDay(/* tuple */[
                                             currentYear,
                                             currentMonth
                                           ]));
@@ -86,7 +106,11 @@ function make(currentMonth, currentYear, _) {
 exports.component = component;
 exports.cellEle = cellEle;
 exports.cellEleRow = cellEleRow;
-exports.renderDays = renderDays;
+exports.firstStartDay = firstStartDay;
+exports.getStartDays = getStartDays;
+exports.getOneWeekDays = getOneWeekDays;
 exports.renderWeekRow = renderWeekRow;
+exports.renderOneWeek = renderOneWeek;
+exports.renderDays = renderDays;
 exports.make = make;
 /* component Not a pure module */
