@@ -48,10 +48,22 @@ function getOneWeekDays(startDay) {
                 ]));
 }
 
-function renderWeekRow(renderDays) {
+function cellStyle($staropt$star, _) {
+  var b = $staropt$star !== undefined ? $staropt$star : "#bbdefb";
+  return {
+          background: b,
+          margin: "2px",
+          padding: "0.5em"
+        };
+}
+
+function renderWeekRow(renderDays, currentMonth) {
   return $$Array.map((function (e) {
+                var match = currentMonth === e[/* month */1];
+                var style = match ? cellStyle(undefined, /* () */0) : cellStyle("#e0e0e0", /* () */0);
                 return React.createElement("div", {
-                            className: "col-sm card"
+                            className: "col-sm card",
+                            style: style
                           }, String(e[/* date */2]));
               }), renderDays);
 }
@@ -62,8 +74,10 @@ function renderOneWeek(weekDays) {
             }, weekDays);
 }
 
-function renderDays(param) {
-  return $$Array.map(renderOneWeek, $$Array.map(renderWeekRow, $$Array.map(getOneWeekDays, getStartDays(firstStartDay(/* tuple */[
+function renderDays(param, currentMonth) {
+  return $$Array.map(renderOneWeek, $$Array.map((function (e) {
+                    return renderWeekRow(e, currentMonth);
+                  }), $$Array.map(getOneWeekDays, getStartDays(firstStartDay(/* tuple */[
                               param[0],
                               param[1]
                             ])))));
@@ -86,12 +100,12 @@ function make(currentMonth, currentYear, _) {
                         }, renderDays(/* tuple */[
                               currentYear,
                               currentMonth
-                            ]), React.createElement("button", {
+                            ], currentMonth), React.createElement("button", {
                               onClick: (function () {
-                                  console.log(firstStartDay(/* tuple */[
-                                            currentYear,
-                                            currentMonth
-                                          ]));
+                                  console.log(getStartDays(firstStartDay(/* tuple */[
+                                                currentYear,
+                                                currentMonth
+                                              ])));
                                   return /* () */0;
                                 })
                             }, "current month: " + String(currentMonth)));
@@ -109,6 +123,7 @@ exports.cellEleRow = cellEleRow;
 exports.firstStartDay = firstStartDay;
 exports.getStartDays = getStartDays;
 exports.getOneWeekDays = getOneWeekDays;
+exports.cellStyle = cellStyle;
 exports.renderWeekRow = renderWeekRow;
 exports.renderOneWeek = renderOneWeek;
 exports.renderDays = renderDays;

@@ -12,7 +12,7 @@ function getDayStr(year, month, date) {
 
 function dayInfo(someDay) {
   var year = someDay.getUTCFullYear() | 0;
-  var month = someDay.getUTCMonth() + 1.0 | 0;
+  var month = someDay.getMonth() + 1.0 | 0;
   var date = someDay.getDate() | 0;
   var dayStr = getDayStr(year, month, date);
   return /* record */[

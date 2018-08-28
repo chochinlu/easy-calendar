@@ -7,6 +7,26 @@ var ReasonReact = require("reason-react/src/ReasonReact.js");
 
 var component = ReasonReact.statelessComponent("Days");
 
+function dayStyle($staropt$star, $staropt$star$1, _) {
+  var f = $staropt$star !== undefined ? $staropt$star : "white";
+  var b = $staropt$star$1 !== undefined ? $staropt$star$1 : "#4fc3f7";
+  return {
+          background: b,
+          color: f,
+          margin: "2px",
+          padding: "0.5em"
+        };
+}
+
+function dayEle(day) {
+  var match = day === "Sun" || day === "Sat";
+  var style = match ? dayStyle("black", "#80deea", /* () */0) : dayStyle(undefined, undefined, /* () */0);
+  return React.createElement("div", {
+              className: "col-sm card",
+              style: style
+            }, day);
+}
+
 function dayText(day) {
   switch (day) {
     case 0 : 
@@ -25,12 +45,6 @@ function dayText(day) {
         return "Sat";
     
   }
-}
-
-function dayEle(day) {
-  return React.createElement("div", {
-              className: "col-sm card"
-            }, day);
 }
 
 var dayList = $$Array.map(dayEle, $$Array.map(dayText, /* array */[
@@ -69,8 +83,9 @@ function make() {
 }
 
 exports.component = component;
-exports.dayText = dayText;
+exports.dayStyle = dayStyle;
 exports.dayEle = dayEle;
+exports.dayText = dayText;
 exports.dayList = dayList;
 exports.make = make;
 /* component Not a pure module */

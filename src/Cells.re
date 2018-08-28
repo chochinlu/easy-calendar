@@ -26,22 +26,28 @@ let getOneWeekDays = (startDay: Js.Date.t) => {
   |> Array.mapi((x, _) => addDays(startDay, x) |> DayUtil.dayInfo);
 };
 
-let renderWeekRow = (renderDays: array(DayUtil.day)) =>
+let cellStyle = (~background as b="#bbdefb", ()) =>
+  ReactDOMRe.Style.make(~margin="2px", ~padding="0.5em", ~background=b, ());
+
+let renderWeekRow = (renderDays: array(DayUtil.day), currentMonth) =>
   renderDays
-  |> Array.map((e: DayUtil.day) =>
-       <div className="col-sm card">
+  |> Array.map((e: DayUtil.day) => {
+       let style =
+         currentMonth === e.month ?
+           cellStyle() : cellStyle(~background="#e0e0e0", ());
+       <div className="col-sm card" style>
          (ReasonReact.string(e.date |> string_of_int))
-       </div>
-     );
+       </div>;
+     });
 
-let renderOneWeek = (weekDays) => <div className="row"> ...weekDays </div>;
+let renderOneWeek = weekDays => <div className="row"> ...weekDays </div>;
 
-let renderDays = ((someYear: int, someMonth: int)) => 
-  (someYear, someMonth) 
-  |> firstStartDay 
-  |> getStartDays 
+let renderDays = ((someYear: int, someMonth: int), currentMonth) =>
+  (someYear, someMonth)
+  |> firstStartDay
+  |> getStartDays
   |> Array.map(getOneWeekDays)
-  |> Array.map(renderWeekRow) 
+  |> Array.map(e => renderWeekRow(e, currentMonth))
   |> Array.map(renderOneWeek)
   |> ReasonReact.array;
 
@@ -49,9 +55,15 @@ let make = (~currentMonth, ~currentYear, _children) => {
   ...component,
   render: _ =>
     <div className="container">
-      (renderDays((currentYear, currentMonth)))
+      (renderDays((currentYear, currentMonth), currentMonth))
       <button
-        onClick=(_e => (currentYear, currentMonth) |> firstStartDay |> Js.log)>
+        onClick=(
+          _e =>
+            (currentYear, currentMonth)
+            |> firstStartDay
+            |> getStartDays
+            |> Js.log
+        )>
         (
           currentMonth
           |> string_of_int
