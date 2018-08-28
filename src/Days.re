@@ -18,12 +18,14 @@ let dayStyle = (~frontColor as f="white", ~backColor as b="#4fc3f7", ()) =>
     (),
   );
 
-let dayEle = (day: string) => {
+let dayEle = (i, day: string) => {
   let style =
     day === "Sun" || day === "Sat" ?
       dayStyle(~backColor="#80deea", ~frontColor="black", ()) : dayStyle();
 
-  <div className="col-sm card" style> (ReasonReact.string(day)) </div>;
+  <div className="col-sm card" style key=("day-header-" ++ string_of_int(i))>
+    (ReasonReact.string(day))
+  </div>;
 };
 
 let dayText = (day: dayName) : string =>
@@ -40,7 +42,7 @@ let dayText = (day: dayName) : string =>
 let dayList =
   [|Sun, Mon, Tue, Wed, Thu, Fri, Sat|]
   |> Array.map(dayText)
-  |> Array.map(dayEle)
+  |> Array.mapi(dayEle)
   |> ReasonReact.array;
 
 let make = _children => {

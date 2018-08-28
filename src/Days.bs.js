@@ -18,10 +18,11 @@ function dayStyle($staropt$star, $staropt$star$1, _) {
         };
 }
 
-function dayEle(day) {
+function dayEle(i, day) {
   var match = day === "Sun" || day === "Sat";
   var style = match ? dayStyle("black", "#80deea", /* () */0) : dayStyle(undefined, undefined, /* () */0);
   return React.createElement("div", {
+              key: "day-header-" + String(i),
               className: "col-sm card",
               style: style
             }, day);
@@ -47,7 +48,7 @@ function dayText(day) {
   }
 }
 
-var dayList = $$Array.map(dayEle, $$Array.map(dayText, /* array */[
+var dayList = $$Array.mapi(dayEle, $$Array.map(dayText, /* array */[
           /* Sun */0,
           /* Mon */1,
           /* Tue */2,

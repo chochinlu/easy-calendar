@@ -50,24 +50,26 @@ function cellStyle($staropt$star, _) {
 }
 
 function renderWeekRow(renderDays, currentMonth) {
-  return $$Array.map((function (e) {
+  return $$Array.mapi((function (i, e) {
                 var match = currentMonth === e[/* month */1];
                 var style = match ? cellStyle(undefined, /* () */0) : cellStyle("#e0e0e0", /* () */0);
                 return React.createElement("div", {
+                            key: "cells-row-" + String(i),
                             className: "col-sm card",
                             style: style
                           }, String(e[/* date */2]));
               }), renderDays);
 }
 
-function renderOneWeek(weekDays) {
+function renderOneWeek(i, weekDays) {
   return ReactDOMRe.createElementVariadic("div", {
+              key: "cell-" + String(i),
               className: "row"
             }, weekDays);
 }
 
 function renderDays(param, currentMonth) {
-  return $$Array.map(renderOneWeek, $$Array.map((function (e) {
+  return $$Array.mapi(renderOneWeek, $$Array.map((function (e) {
                     return renderWeekRow(e, currentMonth);
                   }), $$Array.map(getOneWeekDays, getStartDays(firstStartDay(/* tuple */[
                               param[0],

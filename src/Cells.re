@@ -25,16 +25,18 @@ let cellStyle = (~background as b="#bbdefb", ()) =>
 
 let renderWeekRow = (renderDays: array(DayUtil.day), currentMonth) =>
   renderDays
-  |> Array.map((e: DayUtil.day) => {
+  |> Array.mapi((i, e: DayUtil.day) => {
        let style =
          currentMonth === e.month ?
            cellStyle() : cellStyle(~background="#e0e0e0", ());
-       <div className="col-sm card" style>
+       <div
+         className="col-sm card" style key=("cells-row-" ++ string_of_int(i))>
          (ReasonReact.string(e.date |> string_of_int))
        </div>;
      });
 
-let renderOneWeek = weekDays => <div className="row"> ...weekDays </div>;
+let renderOneWeek = (i, weekDays) =>
+  <div className="row" key=("cell-" ++ string_of_int(i))> ...weekDays </div>;
 
 let renderDays = ((someYear: int, someMonth: int), currentMonth) =>
   (someYear, someMonth)
@@ -42,7 +44,7 @@ let renderDays = ((someYear: int, someMonth: int), currentMonth) =>
   |> getStartDays
   |> Array.map(getOneWeekDays)
   |> Array.map(e => renderWeekRow(e, currentMonth))
-  |> Array.map(renderOneWeek)
+  |> Array.mapi(renderOneWeek)
   |> ReasonReact.array;
 
 let make = (~currentMonth, ~currentYear, _children) => {
