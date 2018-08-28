@@ -30,7 +30,7 @@ function make() {
                           className: "bordered responsive-margin"
                         }, ReasonReact.element(undefined, undefined, Header$ReactTemplate.make(today[/* str */3], (function () {
                                     return Curry._1(self[/* send */3], /* Show */0);
-                                  }), self[/* state */1][/* show */0], self[/* state */1][/* currentMonth */1], self[/* state */1][/* currentYear */2], (function () {
+                                  }), self[/* state */1][/* show */0], self[/* state */1][/* currentMonth */1], self[/* state */1][/* currentYear */2], self[/* state */1][/* selectedDate */3], (function () {
                                     return Curry._1(self[/* send */3], /* PrevMonth */1);
                                   }), (function () {
                                     return Curry._1(self[/* send */3], /* NextMonth */2);
@@ -42,7 +42,8 @@ function make() {
               return /* record */[
                       /* show */false,
                       /* currentMonth */today[/* month */1],
-                      /* currentYear */today[/* year */0]
+                      /* currentYear */today[/* year */0],
+                      /* selectedDate */undefined
                     ];
             }),
           /* retainedProps */component[/* retainedProps */11],
@@ -52,7 +53,8 @@ function make() {
                     return /* Update */Block.__(0, [/* record */[
                                 /* show */!state[/* show */0],
                                 /* currentMonth */state[/* currentMonth */1],
-                                /* currentYear */state[/* currentYear */2]
+                                /* currentYear */state[/* currentYear */2],
+                                /* selectedDate */state[/* selectedDate */3]
                               ]]);
                 case 1 : 
                     var e = state[/* currentMonth */1] - 1 | 0;
@@ -64,7 +66,8 @@ function make() {
                     return /* Update */Block.__(0, [/* record */[
                                 /* show */state[/* show */0],
                                 /* currentMonth */month,
-                                /* currentYear */year
+                                /* currentYear */year,
+                                /* selectedDate */state[/* selectedDate */3]
                               ]]);
                 case 2 : 
                     var e$2 = state[/* currentMonth */1] + 1 | 0;
@@ -76,13 +79,15 @@ function make() {
                     return /* Update */Block.__(0, [/* record */[
                                 /* show */state[/* show */0],
                                 /* currentMonth */month$1,
-                                /* currentYear */year$1
+                                /* currentYear */year$1,
+                                /* selectedDate */state[/* selectedDate */3]
                               ]]);
                 case 3 : 
                     return /* Update */Block.__(0, [/* record */[
                                 /* show */state[/* show */0],
                                 /* currentMonth */today[/* month */1],
-                                /* currentYear */today[/* year */0]
+                                /* currentYear */today[/* year */0],
+                                /* selectedDate */state[/* selectedDate */3]
                               ]]);
                 
               }

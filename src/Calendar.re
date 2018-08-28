@@ -4,6 +4,7 @@ type state = {
   show: bool,
   currentMonth: int,
   currentYear: int,
+  selectedDate: option(DayUtil.day),
 };
 
 type action =
@@ -20,6 +21,7 @@ let make = _children => {
     show: false,
     currentMonth: today.month,
     currentYear: today.year,
+    selectedDate: None,
   },
   reducer: (action, state) =>
     switch (action) {
@@ -52,6 +54,7 @@ let make = _children => {
         show=self.state.show
         currentMonth=self.state.currentMonth
         currentYear=self.state.currentYear
+        selectedDate=self.state.selectedDate
         handleShow=(_evt => self.send(Show))
         clickPrev=(_evt => self.send(PrevMonth))
         clickNext=(_evt => self.send(NextMonth))

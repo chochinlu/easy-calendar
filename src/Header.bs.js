@@ -10,7 +10,13 @@ function yearMonth(year, month) {
   return String(year) + ("-" + String(month));
 }
 
-function make(todayStr, handleShow, show, currentMonth, currentYear, clickPrev, clickNext, clickCurrent, _) {
+function selectDateTxt(param) {
+  var someDay = param[0];
+  var dayStr = someDay !== undefined ? someDay[/* str */3] : param[1];
+  return "所選日期: " + (String(dayStr) + "");
+}
+
+function make(todayStr, handleShow, show, currentMonth, currentYear, selectedDate, clickPrev, clickNext, clickCurrent, _) {
   return /* record */[
           /* debugName */component[/* debugName */0],
           /* reactClassInternal */component[/* reactClassInternal */1],
@@ -22,7 +28,10 @@ function make(todayStr, handleShow, show, currentMonth, currentYear, clickPrev, 
           /* willUpdate */component[/* willUpdate */7],
           /* shouldUpdate */component[/* shouldUpdate */8],
           /* render */(function () {
-              return React.createElement("div", undefined, React.createElement("p", undefined, "今日: " + todayStr), React.createElement("h2", undefined, yearMonth(currentYear, currentMonth)), React.createElement("button", {
+              return React.createElement("div", undefined, React.createElement("p", undefined, "今日: " + todayStr), React.createElement("p", undefined, selectDateTxt(/* tuple */[
+                                  selectedDate,
+                                  todayStr
+                                ])), React.createElement("h2", undefined, yearMonth(currentYear, currentMonth)), React.createElement("button", {
                               onClick: clickPrev
                             }, "上個月"), React.createElement("button", {
                               onClick: clickCurrent
@@ -46,5 +55,6 @@ function make(todayStr, handleShow, show, currentMonth, currentYear, clickPrev, 
 
 exports.component = component;
 exports.yearMonth = yearMonth;
+exports.selectDateTxt = selectDateTxt;
 exports.make = make;
 /* component Not a pure module */
