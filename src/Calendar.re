@@ -48,7 +48,7 @@ let make = _children => {
   render: self =>
     <div className="bordered responsive-margin">
       <Header
-        today=today.str
+        todayStr=today.str
         show=self.state.show
         currentMonth=self.state.currentMonth
         currentYear=self.state.currentYear

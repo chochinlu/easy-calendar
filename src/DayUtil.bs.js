@@ -2,10 +2,6 @@
 'use strict';
 
 
-function floatStr(str) {
-  return String(str | 0);
-}
-
 function getDayStr(year, month, date) {
   return String(year) + ("-" + (String(month) + ("-" + String(date))));
 }
@@ -23,7 +19,6 @@ function dayInfo(someDay) {
         ];
 }
 
-exports.floatStr = floatStr;
 exports.getDayStr = getDayStr;
 exports.dayInfo = dayInfo;
 /* No side effect */

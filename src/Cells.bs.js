@@ -12,14 +12,6 @@ var DayUtil$ReactTemplate = require("./DayUtil.bs.js");
 
 var component = ReasonReact.statelessComponent("Cells");
 
-function cellEle() {
-  return React.createElement("div", {
-              className: "col-sm card"
-            }, "day");
-}
-
-var cellEleRow = Caml_array.caml_make_vect(7, cellEle(""));
-
 function firstStartDay(param) {
   return DateFns.startOfWeek($$Array.fold_left((function (a, b) {
                     return a + ("-" + b);
@@ -118,8 +110,6 @@ function make(currentMonth, currentYear, _) {
 }
 
 exports.component = component;
-exports.cellEle = cellEle;
-exports.cellEleRow = cellEleRow;
 exports.firstStartDay = firstStartDay;
 exports.getStartDays = getStartDays;
 exports.getOneWeekDays = getOneWeekDays;

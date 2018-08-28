@@ -10,7 +10,7 @@ function yearMonth(year, month) {
   return String(year) + ("-" + String(month));
 }
 
-function make(today, handleShow, show, currentMonth, currentYear, clickPrev, clickNext, clickCurrent, _) {
+function make(todayStr, handleShow, show, currentMonth, currentYear, clickPrev, clickNext, clickCurrent, _) {
   return /* record */[
           /* debugName */component[/* debugName */0],
           /* reactClassInternal */component[/* reactClassInternal */1],
@@ -22,7 +22,7 @@ function make(today, handleShow, show, currentMonth, currentYear, clickPrev, cli
           /* willUpdate */component[/* willUpdate */7],
           /* shouldUpdate */component[/* shouldUpdate */8],
           /* render */(function () {
-              return React.createElement("div", undefined, React.createElement("p", undefined, "今日: " + today), React.createElement("h2", undefined, yearMonth(currentYear, currentMonth)), React.createElement("button", {
+              return React.createElement("div", undefined, React.createElement("p", undefined, "今日: " + todayStr), React.createElement("h2", undefined, yearMonth(currentYear, currentMonth)), React.createElement("button", {
                               onClick: clickPrev
                             }, "上個月"), React.createElement("button", {
                               onClick: clickCurrent

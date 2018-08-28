@@ -4,12 +4,6 @@
 
 let component = ReasonReact.statelessComponent("Cells");
 
-/* cells mockup */
-let cellEle = (_: string) =>
-  <div className="col-sm card"> (ReasonReact.string("day")) </div>;
-
-let cellEleRow = "" |> cellEle |> ArrayLabels.make(7);
-
 /* get every start date of week */
 let firstStartDay = ((someYear: int, someMonth: int)) =>
   [|someYear, someMonth|]

@@ -5,8 +5,6 @@ type day = {
   str: string,
 };
 
-let floatStr = str => str |> int_of_float |> string_of_int;
-
 let getDayStr = (year, month, date) =>
   string_of_int(year)
   ++ "-"

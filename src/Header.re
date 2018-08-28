@@ -5,7 +5,7 @@ let yearMonth = (year: int, month: int) : string =>
 
 let make =
     (
-      ~today,
+      ~todayStr,
       ~handleShow,
       ~show,
       ~currentMonth,
@@ -18,7 +18,7 @@ let make =
   ...component,
   render: _self =>
     <div>
-      <p> (today |> (t => {j|今日: |j} ++ t |> ReasonReact.string)) </p>
+      <p> (todayStr |> (t => {j|今日: |j} ++ t |> ReasonReact.string)) </p>
       <h2> (yearMonth(currentYear, currentMonth) |> ReasonReact.string) </h2>
       <button onClick=clickPrev>
         (ReasonReact.string({j|上個月|j}))
