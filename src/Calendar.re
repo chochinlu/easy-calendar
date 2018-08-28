@@ -58,6 +58,9 @@ let make = _children => {
         clickCurrent=(_evt => self.send(ThisMonth))
       />
       <Days />
-      <Cells currentMonth=self.state.currentMonth today />
+      <Cells
+        currentMonth=self.state.currentMonth
+        currentYear=self.state.currentYear
+      />
     </div>,
 };

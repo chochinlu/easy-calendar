@@ -36,7 +36,7 @@ function make() {
                                     return Curry._1(self[/* send */3], /* NextMonth */2);
                                   }), (function () {
                                     return Curry._1(self[/* send */3], /* ThisMonth */3);
-                                  }), /* array */[])), ReasonReact.element(undefined, undefined, Days$ReactTemplate.make(/* array */[])), ReasonReact.element(undefined, undefined, Cells$ReactTemplate.make(self[/* state */1][/* currentMonth */1], today, /* array */[])));
+                                  }), /* array */[])), ReasonReact.element(undefined, undefined, Days$ReactTemplate.make(/* array */[])), ReasonReact.element(undefined, undefined, Cells$ReactTemplate.make(self[/* state */1][/* currentMonth */1], self[/* state */1][/* currentYear */2], /* array */[])));
             }),
           /* initialState */(function () {
               return /* record */[
