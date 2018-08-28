@@ -11,7 +11,7 @@ let cellEle = (_: string) =>
 let cellEleRow = "" |> cellEle |> ArrayLabels.make(7);
 
 /* render real days  */
-let renderDays = (someYear: int, someMonth: int) => {
+let renderDays = ((someYear: int, someMonth: int)) => {
   let startDay =
     [|someYear, someMonth|]
     |> Array.map(string_of_int)
@@ -22,19 +22,27 @@ let renderDays = (someYear: int, someMonth: int) => {
 
   let initDay: DayUtil.day = {year: 0, month: 0, date: 0, str: ""};
 
-  let weekDaysArr =
-    Array.make(7, initDay)
-    |> Array.mapi((x, _) => addDays(startDay, x) |> DayUtil.dayInfo);
-
-  Js.log(weekDaysArr);
+  Array.make(7, initDay)
+  |> Array.mapi((x, _) => addDays(startDay, x) |> DayUtil.dayInfo);
 };
+
+let renderWeekRow = (renderDays: array(DayUtil.day)) =>
+  renderDays
+  |> Array.map((e: DayUtil.day) =>
+       <div className="col-sm card">
+         (ReasonReact.string(e.date |> string_of_int))
+       </div>
+     );
 
 let make = (~currentMonth, ~currentYear, _children) => {
   ...component,
   render: _ =>
     <div className="container">
-      <div className="row"> ...cellEleRow </div>
-      <button onClick=(_e => renderDays(currentYear, currentMonth))>
+      <div className="row">
+        ...((currentYear, currentMonth) |> renderDays |> renderWeekRow)
+      </div>
+      <button
+        onClick=(_e => (currentYear, currentMonth) |> renderDays |> Js.log)>
         (
           currentMonth
           |> string_of_int

@@ -19,26 +19,32 @@ function cellEle() {
 
 var cellEleRow = Caml_array.caml_make_vect(7, cellEle(""));
 
-function renderDays(someYear, someMonth) {
+function renderDays(param) {
   var startDay = DateFns.startOfWeek($$Array.fold_left((function (a, b) {
               return a + ("-" + b);
             }), "", $$Array.map((function (prim) {
                   return String(prim);
                 }), /* array */[
-                someYear,
-                someMonth
+                param[0],
+                param[1]
               ])));
   console.log(startDay);
-  var weekDaysArr = $$Array.mapi((function (x, _) {
-          return DayUtil$ReactTemplate.dayInfo(DateFns.addDays(startDay, x));
-        }), Caml_array.caml_make_vect(7, /* record */[
-            /* year */0,
-            /* month */0,
-            /* date */0,
-            /* str */""
-          ]));
-  console.log(weekDaysArr);
-  return /* () */0;
+  return $$Array.mapi((function (x, _) {
+                return DayUtil$ReactTemplate.dayInfo(DateFns.addDays(startDay, x));
+              }), Caml_array.caml_make_vect(7, /* record */[
+                  /* year */0,
+                  /* month */0,
+                  /* date */0,
+                  /* str */""
+                ]));
+}
+
+function renderWeekRow(renderDays) {
+  return $$Array.map((function (e) {
+                return React.createElement("div", {
+                            className: "col-sm card"
+                          }, String(e[/* date */2]));
+              }), renderDays);
 }
 
 function make(currentMonth, currentYear, _) {
@@ -57,9 +63,16 @@ function make(currentMonth, currentYear, _) {
                           className: "container"
                         }, ReactDOMRe.createElementVariadic("div", {
                               className: "row"
-                            }, cellEleRow), React.createElement("button", {
+                            }, renderWeekRow(renderDays(/* tuple */[
+                                      currentYear,
+                                      currentMonth
+                                    ]))), React.createElement("button", {
                               onClick: (function () {
-                                  return renderDays(currentYear, currentMonth);
+                                  console.log(renderDays(/* tuple */[
+                                            currentYear,
+                                            currentMonth
+                                          ]));
+                                  return /* () */0;
                                 })
                             }, "current month: " + String(currentMonth)));
             }),
@@ -74,5 +87,6 @@ exports.component = component;
 exports.cellEle = cellEle;
 exports.cellEleRow = cellEleRow;
 exports.renderDays = renderDays;
+exports.renderWeekRow = renderWeekRow;
 exports.make = make;
 /* component Not a pure module */
