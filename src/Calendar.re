@@ -11,7 +11,8 @@ type action =
   | Show
   | PrevMonth
   | NextMonth
-  | ThisMonth;
+  | ThisMonth
+  | SelectDate(DayUtil.day);
 
 let component = ReasonReact.reducerComponent("Calendar");
 
@@ -46,6 +47,8 @@ let make = _children => {
         currentMonth: today.month,
         currentYear: today.year,
       })
+    | SelectDate(day) =>
+      ReasonReact.Update({...state, selectedDate: Some(day)})
     },
   render: self =>
     <div className="bordered responsive-margin">
@@ -64,6 +67,7 @@ let make = _children => {
       <Cells
         currentMonth=self.state.currentMonth
         currentYear=self.state.currentYear
+        select=(evt => self.send(SelectDate(evt)))
       />
     </div>,
 };

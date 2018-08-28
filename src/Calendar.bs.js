@@ -36,7 +36,9 @@ function make() {
                                     return Curry._1(self[/* send */3], /* NextMonth */2);
                                   }), (function () {
                                     return Curry._1(self[/* send */3], /* ThisMonth */3);
-                                  }), /* array */[])), ReasonReact.element(undefined, undefined, Days$ReactTemplate.make(/* array */[])), ReasonReact.element(undefined, undefined, Cells$ReactTemplate.make(self[/* state */1][/* currentMonth */1], self[/* state */1][/* currentYear */2], /* array */[])));
+                                  }), /* array */[])), ReasonReact.element(undefined, undefined, Days$ReactTemplate.make(/* array */[])), ReasonReact.element(undefined, undefined, Cells$ReactTemplate.make(self[/* state */1][/* currentMonth */1], self[/* state */1][/* currentYear */2], (function (evt) {
+                                    return Curry._1(self[/* send */3], /* SelectDate */[evt]);
+                                  }), /* array */[])));
             }),
           /* initialState */(function () {
               return /* record */[
@@ -48,48 +50,57 @@ function make() {
             }),
           /* retainedProps */component[/* retainedProps */11],
           /* reducer */(function (action, state) {
-              switch (action) {
-                case 0 : 
-                    return /* Update */Block.__(0, [/* record */[
-                                /* show */!state[/* show */0],
-                                /* currentMonth */state[/* currentMonth */1],
-                                /* currentYear */state[/* currentYear */2],
-                                /* selectedDate */state[/* selectedDate */3]
-                              ]]);
-                case 1 : 
-                    var e = state[/* currentMonth */1] - 1 | 0;
-                    var match = e < 1;
-                    var month = match ? 12 : e;
-                    var e$1 = state[/* currentMonth */1] - 1 | 0;
-                    var match$1 = e$1 < 1;
-                    var year = match$1 ? state[/* currentYear */2] - 1 | 0 : state[/* currentYear */2];
-                    return /* Update */Block.__(0, [/* record */[
-                                /* show */state[/* show */0],
-                                /* currentMonth */month,
-                                /* currentYear */year,
-                                /* selectedDate */state[/* selectedDate */3]
-                              ]]);
-                case 2 : 
-                    var e$2 = state[/* currentMonth */1] + 1 | 0;
-                    var match$2 = e$2 > 12;
-                    var month$1 = match$2 ? 1 : e$2;
-                    var e$3 = state[/* currentMonth */1] + 1 | 0;
-                    var match$3 = e$3 > 12;
-                    var year$1 = match$3 ? state[/* currentYear */2] + 1 | 0 : state[/* currentYear */2];
-                    return /* Update */Block.__(0, [/* record */[
-                                /* show */state[/* show */0],
-                                /* currentMonth */month$1,
-                                /* currentYear */year$1,
-                                /* selectedDate */state[/* selectedDate */3]
-                              ]]);
-                case 3 : 
-                    return /* Update */Block.__(0, [/* record */[
-                                /* show */state[/* show */0],
-                                /* currentMonth */today[/* month */1],
-                                /* currentYear */today[/* year */0],
-                                /* selectedDate */state[/* selectedDate */3]
-                              ]]);
-                
+              if (typeof action === "number") {
+                switch (action) {
+                  case 0 : 
+                      return /* Update */Block.__(0, [/* record */[
+                                  /* show */!state[/* show */0],
+                                  /* currentMonth */state[/* currentMonth */1],
+                                  /* currentYear */state[/* currentYear */2],
+                                  /* selectedDate */state[/* selectedDate */3]
+                                ]]);
+                  case 1 : 
+                      var e = state[/* currentMonth */1] - 1 | 0;
+                      var match = e < 1;
+                      var month = match ? 12 : e;
+                      var e$1 = state[/* currentMonth */1] - 1 | 0;
+                      var match$1 = e$1 < 1;
+                      var year = match$1 ? state[/* currentYear */2] - 1 | 0 : state[/* currentYear */2];
+                      return /* Update */Block.__(0, [/* record */[
+                                  /* show */state[/* show */0],
+                                  /* currentMonth */month,
+                                  /* currentYear */year,
+                                  /* selectedDate */state[/* selectedDate */3]
+                                ]]);
+                  case 2 : 
+                      var e$2 = state[/* currentMonth */1] + 1 | 0;
+                      var match$2 = e$2 > 12;
+                      var month$1 = match$2 ? 1 : e$2;
+                      var e$3 = state[/* currentMonth */1] + 1 | 0;
+                      var match$3 = e$3 > 12;
+                      var year$1 = match$3 ? state[/* currentYear */2] + 1 | 0 : state[/* currentYear */2];
+                      return /* Update */Block.__(0, [/* record */[
+                                  /* show */state[/* show */0],
+                                  /* currentMonth */month$1,
+                                  /* currentYear */year$1,
+                                  /* selectedDate */state[/* selectedDate */3]
+                                ]]);
+                  case 3 : 
+                      return /* Update */Block.__(0, [/* record */[
+                                  /* show */state[/* show */0],
+                                  /* currentMonth */today[/* month */1],
+                                  /* currentYear */today[/* year */0],
+                                  /* selectedDate */state[/* selectedDate */3]
+                                ]]);
+                  
+                }
+              } else {
+                return /* Update */Block.__(0, [/* record */[
+                            /* show */state[/* show */0],
+                            /* currentMonth */state[/* currentMonth */1],
+                            /* currentYear */state[/* currentYear */2],
+                            /* selectedDate */action[0]
+                          ]]);
               }
             }),
           /* jsElementWrapped */component[/* jsElementWrapped */13]

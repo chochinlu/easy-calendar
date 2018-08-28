@@ -2,6 +2,7 @@
 'use strict';
 
 var $$Array = require("bs-platform/lib/js/array.js");
+var Curry = require("bs-platform/lib/js/curry.js");
 var React = require("react");
 var DateFns = require("date-fns");
 var Caml_array = require("bs-platform/lib/js/caml_array.js");
@@ -49,14 +50,17 @@ function cellStyle($staropt$star, _) {
         };
 }
 
-function renderWeekRow(renderDays, currentMonth) {
+function renderWeekRow(renderDays, currentMonth, select) {
   return $$Array.mapi((function (i, e) {
                 var match = currentMonth === e[/* month */1];
                 var style = match ? cellStyle(undefined, /* () */0) : cellStyle("#e0e0e0", /* () */0);
                 return React.createElement("div", {
                             key: "cells-row-" + String(i),
                             className: "col-sm card",
-                            style: style
+                            style: style,
+                            onClick: (function () {
+                                return Curry._1(select, e);
+                              })
                           }, String(e[/* date */2]));
               }), renderDays);
 }
@@ -68,16 +72,16 @@ function renderOneWeek(i, weekDays) {
             }, weekDays);
 }
 
-function renderDays(param, currentMonth) {
+function renderDays(param, currentMonth, select) {
   return $$Array.mapi(renderOneWeek, $$Array.map((function (e) {
-                    return renderWeekRow(e, currentMonth);
+                    return renderWeekRow(e, currentMonth, select);
                   }), $$Array.map(getOneWeekDays, getStartDays(firstStartDay(/* tuple */[
                               param[0],
                               param[1]
                             ])))));
 }
 
-function make(currentMonth, currentYear, _) {
+function make(currentMonth, currentYear, select, _) {
   return /* record */[
           /* debugName */component[/* debugName */0],
           /* reactClassInternal */component[/* reactClassInternal */1],
@@ -94,7 +98,7 @@ function make(currentMonth, currentYear, _) {
                         }, renderDays(/* tuple */[
                               currentYear,
                               currentMonth
-                            ], currentMonth), React.createElement("button", {
+                            ], currentMonth, select), React.createElement("button", {
                               onClick: (function () {
                                   console.log(getStartDays(firstStartDay(/* tuple */[
                                                 currentYear,
