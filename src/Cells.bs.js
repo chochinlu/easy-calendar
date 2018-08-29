@@ -2,13 +2,13 @@
 'use strict';
 
 var $$Array = require("bs-platform/lib/js/array.js");
-var Curry = require("bs-platform/lib/js/curry.js");
 var React = require("react");
 var DateFns = require("date-fns");
 var Caml_array = require("bs-platform/lib/js/caml_array.js");
 var Caml_int32 = require("bs-platform/lib/js/caml_int32.js");
 var ReactDOMRe = require("reason-react/src/ReactDOMRe.js");
 var ReasonReact = require("reason-react/src/ReasonReact.js");
+var Cell$ReactTemplate = require("./Cell.bs.js");
 var DayUtil$ReactTemplate = require("./DayUtil.bs.js");
 
 var component = ReasonReact.statelessComponent("Cells");
@@ -41,27 +41,9 @@ function getOneWeekDays(startDay) {
                 ]));
 }
 
-function cellStyle($staropt$star, _) {
-  var b = $staropt$star !== undefined ? $staropt$star : "#bbdefb";
-  return {
-          background: b,
-          margin: "2px",
-          padding: "0.5em"
-        };
-}
-
 function renderWeekRow(renderDays, currentMonth, select) {
-  return $$Array.mapi((function (i, e) {
-                var match = currentMonth === e[/* month */1];
-                var style = match ? cellStyle(undefined, /* () */0) : cellStyle("#e0e0e0", /* () */0);
-                return React.createElement("div", {
-                            key: "cells-row-" + String(i),
-                            className: "col-sm card cell",
-                            style: style,
-                            onClick: (function () {
-                                return Curry._1(select, e);
-                              })
-                          }, String(e[/* date */2]));
+  return $$Array.map((function (e) {
+                return ReasonReact.element(undefined, undefined, Cell$ReactTemplate.make(e, select, currentMonth, /* array */[]));
               }), renderDays);
 }
 
@@ -119,7 +101,6 @@ exports.component = component;
 exports.firstStartDay = firstStartDay;
 exports.getStartDays = getStartDays;
 exports.getOneWeekDays = getOneWeekDays;
-exports.cellStyle = cellStyle;
 exports.renderWeekRow = renderWeekRow;
 exports.renderOneWeek = renderOneWeek;
 exports.renderDays = renderDays;

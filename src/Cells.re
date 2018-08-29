@@ -20,23 +20,9 @@ let getOneWeekDays = (startDay: Js.Date.t) => {
   |> Array.mapi((x, _) => addDays(startDay, x) |> DayUtil.dayInfo);
 };
 
-let cellStyle = (~background as b="#bbdefb", ()) =>
-  ReactDOMRe.Style.make(~margin="2px", ~padding="0.5em", ~background=b, ());
-
 let renderWeekRow = (renderDays: array(DayUtil.day), currentMonth, select) =>
   renderDays
-  |> Array.mapi((i, e: DayUtil.day) => {
-       let style =
-         currentMonth === e.month ?
-           cellStyle() : cellStyle(~background="#e0e0e0", ());
-       <div
-         className="col-sm card cell"
-         style
-         key=("cells-row-" ++ string_of_int(i))
-         onClick=(_evt => select(e))>
-         (ReasonReact.string(e.date |> string_of_int))
-       </div>;
-     });
+  |> Array.map((e: DayUtil.day) => <Cell day=e select currentMonth />);
 
 let renderOneWeek = (i, weekDays) =>
   <div className="row" key=("cell-" ++ string_of_int(i))> ...weekDays </div>;
