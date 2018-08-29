@@ -30,7 +30,7 @@ let renderWeekRow = (renderDays: array(DayUtil.day), currentMonth, select) =>
          currentMonth === e.month ?
            cellStyle() : cellStyle(~background="#e0e0e0", ());
        <div
-         className="col-sm card"
+         className="col-sm card cell"
          style
          key=("cells-row-" ++ string_of_int(i))
          onClick=(_evt => select(e))>

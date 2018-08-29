@@ -56,7 +56,7 @@ function renderWeekRow(renderDays, currentMonth, select) {
                 var style = match ? cellStyle(undefined, /* () */0) : cellStyle("#e0e0e0", /* () */0);
                 return React.createElement("div", {
                             key: "cells-row-" + String(i),
-                            className: "col-sm card",
+                            className: "col-sm card cell",
                             style: style,
                             onClick: (function () {
                                 return Curry._1(select, e);
