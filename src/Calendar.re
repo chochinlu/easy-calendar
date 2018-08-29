@@ -22,7 +22,7 @@ let make = _children => {
     show: false,
     currentMonth: today.month,
     currentYear: today.year,
-    selectedDate: None,
+    selectedDate: Some(today),
   },
   reducer: (action, state) =>
     switch (action) {
@@ -67,6 +67,7 @@ let make = _children => {
       <Cells
         currentMonth=self.state.currentMonth
         currentYear=self.state.currentYear
+        selectedDate=self.state.selectedDate
         select=(evt => self.send(SelectDate(evt)))
       />
     </div>,

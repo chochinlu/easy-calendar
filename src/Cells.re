@@ -20,27 +20,38 @@ let getOneWeekDays = (startDay: Js.Date.t) => {
   |> Array.mapi((x, _) => addDays(startDay, x) |> DayUtil.dayInfo);
 };
 
-let renderWeekRow = (renderDays: array(DayUtil.day), currentMonth, select) =>
+let renderWeekRow =
+    (renderDays: array(DayUtil.day), currentMonth, select, selectedDate) =>
   renderDays
-  |> Array.map((e: DayUtil.day) => <Cell day=e select currentMonth />);
+  |> Array.map((e: DayUtil.day) =>
+       <Cell day=e select currentMonth selectedDate />
+     );
 
 let renderOneWeek = (i, weekDays) =>
   <div className="row" key=("cell-" ++ string_of_int(i))> ...weekDays </div>;
 
-let renderDays = ((someYear: int, someMonth: int), currentMonth, select) =>
+let renderDays =
+    ((someYear: int, someMonth: int), currentMonth, select, selectedDate) =>
   (someYear, someMonth)
   |> firstStartDay
   |> getStartDays
   |> Array.map(getOneWeekDays)
-  |> Array.map(e => renderWeekRow(e, currentMonth, select))
+  |> Array.map(e => renderWeekRow(e, currentMonth, select, selectedDate))
   |> Array.mapi(renderOneWeek)
   |> ReasonReact.array;
 
-let make = (~currentMonth, ~currentYear, ~select, _children) => {
+let make = (~currentMonth, ~currentYear, ~select, ~selectedDate, _children) => {
   ...component,
   render: _ =>
     <div className="container">
-      (renderDays((currentYear, currentMonth), currentMonth, select))
+      (
+        renderDays(
+          (currentYear, currentMonth),
+          currentMonth,
+          select,
+          selectedDate,
+        )
+      )
       <button
         onClick=(
           _e =>

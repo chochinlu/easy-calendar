@@ -41,9 +41,9 @@ function getOneWeekDays(startDay) {
                 ]));
 }
 
-function renderWeekRow(renderDays, currentMonth, select) {
+function renderWeekRow(renderDays, currentMonth, select, selectedDate) {
   return $$Array.map((function (e) {
-                return ReasonReact.element(undefined, undefined, Cell$ReactTemplate.make(e, select, currentMonth, /* array */[]));
+                return ReasonReact.element(undefined, undefined, Cell$ReactTemplate.make(e, select, currentMonth, selectedDate, /* array */[]));
               }), renderDays);
 }
 
@@ -54,16 +54,16 @@ function renderOneWeek(i, weekDays) {
             }, weekDays);
 }
 
-function renderDays(param, currentMonth, select) {
+function renderDays(param, currentMonth, select, selectedDate) {
   return $$Array.mapi(renderOneWeek, $$Array.map((function (e) {
-                    return renderWeekRow(e, currentMonth, select);
+                    return renderWeekRow(e, currentMonth, select, selectedDate);
                   }), $$Array.map(getOneWeekDays, getStartDays(firstStartDay(/* tuple */[
                               param[0],
                               param[1]
                             ])))));
 }
 
-function make(currentMonth, currentYear, select, _) {
+function make(currentMonth, currentYear, select, selectedDate, _) {
   return /* record */[
           /* debugName */component[/* debugName */0],
           /* reactClassInternal */component[/* reactClassInternal */1],
@@ -80,7 +80,7 @@ function make(currentMonth, currentYear, select, _) {
                         }, renderDays(/* tuple */[
                               currentYear,
                               currentMonth
-                            ], currentMonth, select), React.createElement("button", {
+                            ], currentMonth, select, selectedDate), React.createElement("button", {
                               onClick: (function () {
                                   console.log(getStartDays(firstStartDay(/* tuple */[
                                                 currentYear,

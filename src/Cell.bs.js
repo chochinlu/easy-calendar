@@ -8,8 +8,17 @@ var ReasonReact = require("reason-react/src/ReasonReact.js");
 var component = ReasonReact.statelessComponent("Cell");
 
 function getStyle(param) {
-  var match = param[0] === param[1];
-  var backgroundColor = match ? "#bbdefb" : "#e0e0e0";
+  var selectedDate = param[2];
+  var day = param[1];
+  var selected = selectedDate !== undefined ? selectedDate[/* str */3] : "0-0-0";
+  var match = selected === day[/* str */3];
+  var backgroundColor;
+  if (match) {
+    backgroundColor = "#ffeb3b";
+  } else {
+    var match$1 = param[0] === day[/* month */1];
+    backgroundColor = match$1 ? "#bbdefb" : "#e0e0e0";
+  }
   return {
           backgroundColor: backgroundColor,
           margin: "2px",
@@ -17,7 +26,7 @@ function getStyle(param) {
         };
 }
 
-function make(day, select, currentMonth, _) {
+function make(day, select, currentMonth, selectedDate, _) {
   return /* record */[
           /* debugName */component[/* debugName */0],
           /* reactClassInternal */component[/* reactClassInternal */1],
@@ -33,7 +42,8 @@ function make(day, select, currentMonth, _) {
                           className: "col-sm card cell",
                           style: getStyle(/* tuple */[
                                 currentMonth,
-                                day[/* month */1]
+                                day,
+                                selectedDate
                               ]),
                           onClick: (function () {
                               return Curry._1(select, day);

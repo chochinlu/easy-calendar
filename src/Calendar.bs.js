@@ -38,14 +38,14 @@ function make() {
                                     return Curry._1(self[/* send */3], /* ThisMonth */3);
                                   }), /* array */[])), ReasonReact.element(undefined, undefined, Days$ReactTemplate.make(/* array */[])), ReasonReact.element(undefined, undefined, Cells$ReactTemplate.make(self[/* state */1][/* currentMonth */1], self[/* state */1][/* currentYear */2], (function (evt) {
                                     return Curry._1(self[/* send */3], /* SelectDate */[evt]);
-                                  }), /* array */[])));
+                                  }), self[/* state */1][/* selectedDate */3], /* array */[])));
             }),
           /* initialState */(function () {
               return /* record */[
                       /* show */false,
                       /* currentMonth */today[/* month */1],
                       /* currentYear */today[/* year */0],
-                      /* selectedDate */undefined
+                      /* selectedDate */today
                     ];
             }),
           /* retainedProps */component[/* retainedProps */11],
