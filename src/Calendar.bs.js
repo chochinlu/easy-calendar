@@ -9,6 +9,7 @@ var Days$ReactTemplate = require("./Days.bs.js");
 var Cells$ReactTemplate = require("./Cells.bs.js");
 var Header$ReactTemplate = require("./Header.bs.js");
 var DayUtil$ReactTemplate = require("./DayUtil.bs.js");
+var HelloRe$ReactTemplate = require("./HelloRe.bs.js");
 
 var today = DayUtil$ReactTemplate.dayInfo(new Date());
 
@@ -28,7 +29,7 @@ function make() {
           /* render */(function (self) {
               return React.createElement("div", {
                           className: "bordered responsive-margin"
-                        }, ReasonReact.element(undefined, undefined, Header$ReactTemplate.make(today[/* str */3], (function () {
+                        }, ReasonReact.element(undefined, undefined, HelloRe$ReactTemplate.make(/* array */[])), ReasonReact.element(undefined, undefined, Header$ReactTemplate.make(today[/* str */3], (function () {
                                     return Curry._1(self[/* send */3], /* Show */0);
                                   }), self[/* state */1][/* show */0], self[/* state */1][/* currentMonth */1], self[/* state */1][/* currentYear */2], self[/* state */1][/* selectedDate */3], (function () {
                                     return Curry._1(self[/* send */3], /* PrevMonth */1);

@@ -52,6 +52,7 @@ let make = _children => {
     },
   render: self =>
     <div className="bordered responsive-margin">
+      <HelloRe />
       <Header
         todayStr=today.str
         show=self.state.show
