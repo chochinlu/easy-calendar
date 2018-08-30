@@ -3,9 +3,15 @@
 
 var ReasonReact = require("reason-react/src/ReasonReact.js");
 var HelloReact = require("./Hello.react");
+var DayUtil$ReactTemplate = require("./DayUtil.bs.js");
 
-function make(children) {
-  return ReasonReact.wrapJsForReason(HelloReact, undefined, children);
+function make(selectedDay, todayStr, children) {
+  return ReasonReact.wrapJsForReason(HelloReact, {
+              selectedDayStr: DayUtil$ReactTemplate.selectDateTxt(/* tuple */[
+                    selectedDay,
+                    todayStr
+                  ])
+            }, children);
 }
 
 exports.make = make;

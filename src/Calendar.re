@@ -52,7 +52,7 @@ let make = _children => {
     },
   render: self =>
     <div className="bordered responsive-margin">
-      <HelloRe />
+      <HelloRe selectedDay=self.state.selectedDate todayStr=today.str />
       <Header
         todayStr=today.str
         show=self.state.show

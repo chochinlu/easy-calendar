@@ -20,3 +20,12 @@ let dayInfo = (someDay: Js.Date.t) : day => {
 
   {year, month, date, str: dayStr};
 };
+
+let selectDateTxt = ((someDay: option(day), todayStr)) => {
+  let dayStr =
+    switch (someDay) {
+    | None => todayStr
+    | Some(day) => day.str
+    };
+  {j|所選日期: $dayStr|j};
+};

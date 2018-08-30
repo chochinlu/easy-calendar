@@ -19,6 +19,13 @@ function dayInfo(someDay) {
         ];
 }
 
+function selectDateTxt(param) {
+  var someDay = param[0];
+  var dayStr = someDay !== undefined ? someDay[/* str */3] : param[1];
+  return "所選日期: " + (String(dayStr) + "");
+}
+
 exports.getDayStr = getDayStr;
 exports.dayInfo = dayInfo;
+exports.selectDateTxt = selectDateTxt;
 /* No side effect */
