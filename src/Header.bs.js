@@ -13,10 +13,10 @@ function yearMonth(year, month) {
 function selectDateTxt(param) {
   var someDay = param[0];
   var dayStr = someDay !== undefined ? someDay[/* str */3] : param[1];
-  return "所選日期: " + (String(dayStr) + "");
+  return "Selected date: " + dayStr;
 }
 
-function make(todayStr, show, currentMonth, currentYear, selectedDate, handleShow, clickPrev, clickNext, clickCurrent, _) {
+function make(todayStr, currentMonth, currentYear, selectedDate, clickPrev, clickNext, clickCurrent, _) {
   return /* record */[
           /* debugName */component[/* debugName */0],
           /* reactClassInternal */component[/* reactClassInternal */1],
@@ -28,23 +28,16 @@ function make(todayStr, show, currentMonth, currentYear, selectedDate, handleSho
           /* willUpdate */component[/* willUpdate */7],
           /* shouldUpdate */component[/* shouldUpdate */8],
           /* render */(function () {
-              return React.createElement("div", undefined, React.createElement("p", undefined, "今日: " + todayStr), React.createElement("p", undefined, selectDateTxt(/* tuple */[
+              return React.createElement("div", undefined, React.createElement("p", undefined, "Today" + todayStr), React.createElement("p", undefined, selectDateTxt(/* tuple */[
                                   selectedDate,
                                   todayStr
                                 ])), React.createElement("h2", undefined, yearMonth(currentYear, currentMonth)), React.createElement("button", {
                               onClick: clickPrev
-                            }, "上個月"), React.createElement("button", {
+                            }, "< Prev month"), React.createElement("button", {
                               onClick: clickCurrent
-                            }, "這個月"), React.createElement("button", {
+                            }, "This month"), React.createElement("button", {
                               onClick: clickNext
-                            }, "下個月"), React.createElement("button", {
-                              onClick: (function () {
-                                  console.log("oh");
-                                  return /* () */0;
-                                })
-                            }, "show console log"), React.createElement("button", {
-                              onClick: handleShow
-                            }, "show/hide msg"), React.createElement("h2", undefined, show ? "hi" : null));
+                            }, "Next month >"));
             }),
           /* initialState */component[/* initialState */10],
           /* retainedProps */component[/* retainedProps */11],

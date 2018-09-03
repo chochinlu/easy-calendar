@@ -1,3 +1,7 @@
+.cells {
+  padding-bottom: 1em;
+}
+
 .cell:hover {
   background-color: #1976d2 !important;
   color: white;

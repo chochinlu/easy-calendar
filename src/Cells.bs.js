@@ -76,19 +76,11 @@ function make(currentMonth, currentYear, select, selectedDate, _) {
           /* shouldUpdate */component[/* shouldUpdate */8],
           /* render */(function () {
               return React.createElement("div", {
-                          className: "container"
+                          className: "container cells"
                         }, renderDays(/* tuple */[
                               currentYear,
                               currentMonth
-                            ], currentMonth, select, selectedDate), React.createElement("button", {
-                              onClick: (function () {
-                                  console.log(getStartDays(firstStartDay(/* tuple */[
-                                                currentYear,
-                                                currentMonth
-                                              ])));
-                                  return /* () */0;
-                                })
-                            }, "current month: " + String(currentMonth)));
+                            ], currentMonth, select, selectedDate));
             }),
           /* initialState */component[/* initialState */10],
           /* retainedProps */component[/* retainedProps */11],

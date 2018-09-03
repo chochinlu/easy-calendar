@@ -5,14 +5,12 @@
 let today = Js.Date.make() |> DayUtil.dayInfo;
 
 type state = {
-  show: bool,
   currentMonth: int,
   currentYear: int,
   selectedDate: option(DayUtil.day),
 };
 
 type action =
-  | Show
   | PrevMonth
   | NextMonth
   | ThisMonth
@@ -23,14 +21,12 @@ let component = ReasonReact.reducerComponent("Calendar");
 let make = _children => {
   ...component,
   initialState: () => {
-    show: false,
     currentMonth: today.month,
     currentYear: today.year,
     selectedDate: Some(today),
   },
   reducer: (action, state) =>
     switch (action) {
-    | Show => ReasonReact.Update({...state, show: ! state.show})
     | PrevMonth =>
       let month = state.currentMonth - 1 |> (e => e < 1 ? 12 : e);
       let year =
@@ -56,14 +52,11 @@ let make = _children => {
     },
   render: ({state, send}) =>
     <div className="bordered responsive-margin">
-      <HelloRe selectedDay=state.selectedDate todayStr=today.str />
       <Header
         todayStr=today.str
-        show=state.show
         currentMonth=state.currentMonth
         currentYear=state.currentYear
         selectedDate=state.selectedDate
-        handleShow=(_evt => send(Show))
         clickPrev=(_evt => send(PrevMonth))
         clickNext=(_evt => send(NextMonth))
         clickCurrent=(_evt => send(ThisMonth))

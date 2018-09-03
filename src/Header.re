@@ -9,17 +9,15 @@ let selectDateTxt = ((someDay: option(DayUtil.day), todayStr)) => {
     | None => todayStr
     | Some(day) => day.str
     };
-  {j|所選日期: $dayStr|j};
+  "Selected date: " ++ dayStr;
 };
 
 let make =
     (
       ~todayStr,
-      ~show,
       ~currentMonth,
       ~currentYear,
       ~selectedDate,
-      ~handleShow,
       ~clickPrev,
       ~clickNext,
       ~clickCurrent,
@@ -28,26 +26,19 @@ let make =
   ...component,
   render: _self =>
     <div>
-      <p> (todayStr |> (t => {j|今日: |j} ++ t |> ReasonReact.string)) </p>
+      <p> (todayStr |> (t => "Today" ++ t |> ReasonReact.string)) </p>
       <p>
         ((selectedDate, todayStr) |> selectDateTxt |> ReasonReact.string)
       </p>
       <h2> (yearMonth(currentYear, currentMonth) |> ReasonReact.string) </h2>
       <button onClick=clickPrev>
-        (ReasonReact.string({j|上個月|j}))
+        (ReasonReact.string("< Prev month"))
       </button>
       <button onClick=clickCurrent>
-        (ReasonReact.string({j|這個月|j}))
+        (ReasonReact.string("This month"))
       </button>
       <button onClick=clickNext>
-        (ReasonReact.string({j|下個月|j}))
+        (ReasonReact.string("Next month >"))
       </button>
-      <button onClick=(_e => Js.log("oh"))>
-        (ReasonReact.string("show console log"))
-      </button>
-      <button onClick=handleShow>
-        (ReasonReact.string("show/hide msg"))
-      </button>
-      <h2> (show ? ReasonReact.string("hi") : ReasonReact.null) </h2>
     </div>,
 };

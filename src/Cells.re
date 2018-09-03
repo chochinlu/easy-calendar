@@ -43,7 +43,7 @@ let renderDays =
 let make = (~currentMonth, ~currentYear, ~select, ~selectedDate, _children) => {
   ...component,
   render: _ =>
-    <div className="container">
+    <div className="container cells">
       (
         renderDays(
           (currentYear, currentMonth),
@@ -52,19 +52,5 @@ let make = (~currentMonth, ~currentYear, ~select, ~selectedDate, _children) => {
           selectedDate,
         )
       )
-      <button
-        onClick=(
-          _e =>
-            (currentYear, currentMonth)
-            |> firstStartDay
-            |> getStartDays
-            |> Js.log
-        )>
-        (
-          currentMonth
-          |> string_of_int
-          |> (e => "current month: " ++ e |> ReasonReact.string)
-        )
-      </button>
     </div>,
 };
