@@ -26,20 +26,22 @@ function make() {
           /* willUnmount */component[/* willUnmount */6],
           /* willUpdate */component[/* willUpdate */7],
           /* shouldUpdate */component[/* shouldUpdate */8],
-          /* render */(function (self) {
+          /* render */(function (param) {
+              var send = param[/* send */3];
+              var state = param[/* state */1];
               return React.createElement("div", {
                           className: "bordered responsive-margin"
-                        }, ReasonReact.element(undefined, undefined, HelloRe$ReactTemplate.make(self[/* state */1][/* selectedDate */3], today[/* str */3], /* array */[])), ReasonReact.element(undefined, undefined, Header$ReactTemplate.make(today[/* str */3], (function () {
-                                    return Curry._1(self[/* send */3], /* Show */0);
-                                  }), self[/* state */1][/* show */0], self[/* state */1][/* currentMonth */1], self[/* state */1][/* currentYear */2], self[/* state */1][/* selectedDate */3], (function () {
-                                    return Curry._1(self[/* send */3], /* PrevMonth */1);
+                        }, ReasonReact.element(undefined, undefined, HelloRe$ReactTemplate.make(state[/* selectedDate */3], today[/* str */3], /* array */[])), ReasonReact.element(undefined, undefined, Header$ReactTemplate.make(today[/* str */3], (function () {
+                                    return Curry._1(send, /* Show */0);
+                                  }), state[/* show */0], state[/* currentMonth */1], state[/* currentYear */2], state[/* selectedDate */3], (function () {
+                                    return Curry._1(send, /* PrevMonth */1);
                                   }), (function () {
-                                    return Curry._1(self[/* send */3], /* NextMonth */2);
+                                    return Curry._1(send, /* NextMonth */2);
                                   }), (function () {
-                                    return Curry._1(self[/* send */3], /* ThisMonth */3);
-                                  }), /* array */[])), ReasonReact.element(undefined, undefined, Days$ReactTemplate.make(/* array */[])), ReasonReact.element(undefined, undefined, Cells$ReactTemplate.make(self[/* state */1][/* currentMonth */1], self[/* state */1][/* currentYear */2], (function (evt) {
-                                    return Curry._1(self[/* send */3], /* SelectDate */[evt]);
-                                  }), self[/* state */1][/* selectedDate */3], /* array */[])));
+                                    return Curry._1(send, /* ThisMonth */3);
+                                  }), /* array */[])), ReasonReact.element(undefined, undefined, Days$ReactTemplate.make(/* array */[])), ReasonReact.element(undefined, undefined, Cells$ReactTemplate.make(state[/* currentMonth */1], state[/* currentYear */2], (function (evt) {
+                                    return Curry._1(send, /* SelectDate */[evt]);
+                                  }), state[/* selectedDate */3], /* array */[])));
             }),
           /* initialState */(function () {
               return /* record */[

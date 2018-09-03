@@ -16,7 +16,7 @@ function selectDateTxt(param) {
   return "所選日期: " + (String(dayStr) + "");
 }
 
-function make(todayStr, handleShow, show, currentMonth, currentYear, selectedDate, clickPrev, clickNext, clickCurrent, _) {
+function make(todayStr, show, currentMonth, currentYear, selectedDate, handleShow, clickPrev, clickNext, clickCurrent, _) {
   return /* record */[
           /* debugName */component[/* debugName */0],
           /* reactClassInternal */component[/* reactClassInternal */1],

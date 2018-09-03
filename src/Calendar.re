@@ -50,26 +50,26 @@ let make = _children => {
     | SelectDate(day) =>
       ReasonReact.Update({...state, selectedDate: Some(day)})
     },
-  render: self =>
+  render: ({state, send}) =>
     <div className="bordered responsive-margin">
-      <HelloRe selectedDay=self.state.selectedDate todayStr=today.str />
+      <HelloRe selectedDay=state.selectedDate todayStr=today.str />
       <Header
         todayStr=today.str
-        show=self.state.show
-        currentMonth=self.state.currentMonth
-        currentYear=self.state.currentYear
-        selectedDate=self.state.selectedDate
-        handleShow=(_evt => self.send(Show))
-        clickPrev=(_evt => self.send(PrevMonth))
-        clickNext=(_evt => self.send(NextMonth))
-        clickCurrent=(_evt => self.send(ThisMonth))
+        show=state.show
+        currentMonth=state.currentMonth
+        currentYear=state.currentYear
+        selectedDate=state.selectedDate
+        handleShow=(_evt => send(Show))
+        clickPrev=(_evt => send(PrevMonth))
+        clickNext=(_evt => send(NextMonth))
+        clickCurrent=(_evt => send(ThisMonth))
       />
       <Days />
       <Cells
-        currentMonth=self.state.currentMonth
-        currentYear=self.state.currentYear
-        selectedDate=self.state.selectedDate
-        select=(evt => self.send(SelectDate(evt)))
+        currentMonth=state.currentMonth
+        currentYear=state.currentYear
+        selectedDate=state.selectedDate
+        select=(evt => send(SelectDate(evt)))
       />
     </div>,
 };

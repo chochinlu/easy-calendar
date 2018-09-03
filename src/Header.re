@@ -15,11 +15,11 @@ let selectDateTxt = ((someDay: option(DayUtil.day), todayStr)) => {
 let make =
     (
       ~todayStr,
-      ~handleShow,
       ~show,
       ~currentMonth,
       ~currentYear,
       ~selectedDate,
+      ~handleShow,
       ~clickPrev,
       ~clickNext,
       ~clickCurrent,
