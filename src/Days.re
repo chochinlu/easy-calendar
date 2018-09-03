@@ -50,3 +50,15 @@ let make = _children => {
   render: _ =>
     <div className="container"> <div className="row"> dayList </div> </div>,
 };
+
+[@bs.deriving abstract]
+type jsProps = {
+  children: array(ReasonReact.reactElement),
+};
+
+let jsComponent =
+  ReasonReact.wrapReasonForJs(~component, jsProps =>
+    make(
+      jsProps->childrenGet,
+    )
+  );

@@ -83,10 +83,15 @@ function make() {
         ];
 }
 
+var jsComponent = ReasonReact.wrapReasonForJs(component, (function (jsProps) {
+        return make(jsProps.children);
+      }));
+
 exports.component = component;
 exports.dayStyle = dayStyle;
 exports.dayEle = dayEle;
 exports.dayText = dayText;
 exports.dayList = dayList;
 exports.make = make;
+exports.jsComponent = jsComponent;
 /* component Not a pure module */
