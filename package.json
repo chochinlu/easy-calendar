@@ -1,6 +1,8 @@
 {
   "name": "easy-calendar",
-  "version": "0.1.0",
+  "version": "0.0.1",
+  "description": "calender components written by reason-react",
+  "main": "index.js",
   "scripts": {
     "build": "bsb -make-world",
     "start": "bsb -make-world -w",
@@ -12,7 +14,7 @@
   "keywords": [
     "BuckleScript"
   ],
-  "author": "",
+  "author": "Cho-Ching Lu <chochinlu@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "date-fns": "^1.29.0",
@@ -26,6 +28,8 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.0",
     "bs-platform": "^4.0.3",
+    "css-loader": "^1.0.0",
+    "style-loader": "^0.23.0",
     "webpack": "^4.0.1",
     "webpack-cli": "^2.0.10"
   }
