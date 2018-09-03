@@ -73,3 +73,15 @@ let make = _children => {
       />
     </div>,
 };
+
+[@bs.deriving abstract]
+type jsProps = {
+  children: array(ReasonReact.reactElement),
+};
+
+let jsComponent =
+  ReasonReact.wrapReasonForJs(~component, jsProps =>
+    make(
+      jsProps->childrenGet,
+    )
+  );

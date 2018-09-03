@@ -31,9 +31,9 @@ function make() {
               var state = param[/* state */1];
               return React.createElement("div", {
                           className: "bordered responsive-margin"
-                        }, ReasonReact.element(undefined, undefined, HelloRe$ReactTemplate.make(state[/* selectedDate */3], today[/* str */3], /* array */[])), ReasonReact.element(undefined, undefined, Header$ReactTemplate.make(today[/* str */3], (function () {
+                        }, ReasonReact.element(undefined, undefined, HelloRe$ReactTemplate.make(state[/* selectedDate */3], today[/* str */3], /* array */[])), ReasonReact.element(undefined, undefined, Header$ReactTemplate.make(today[/* str */3], state[/* show */0], state[/* currentMonth */1], state[/* currentYear */2], state[/* selectedDate */3], (function () {
                                     return Curry._1(send, /* Show */0);
-                                  }), state[/* show */0], state[/* currentMonth */1], state[/* currentYear */2], state[/* selectedDate */3], (function () {
+                                  }), (function () {
                                     return Curry._1(send, /* PrevMonth */1);
                                   }), (function () {
                                     return Curry._1(send, /* NextMonth */2);
@@ -110,7 +110,12 @@ function make() {
         ];
 }
 
+var jsComponent = ReasonReact.wrapReasonForJs(component, (function (jsProps) {
+        return make(jsProps.children);
+      }));
+
 exports.today = today;
 exports.component = component;
 exports.make = make;
+exports.jsComponent = jsComponent;
 /* today Not a pure module */
