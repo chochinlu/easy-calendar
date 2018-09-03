@@ -1,3 +1,7 @@
+[%%bs.raw {|
+  require('./more.css');
+|}];
+
 let today = Js.Date.make() |> DayUtil.dayInfo;
 
 type state = {

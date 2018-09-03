@@ -11,6 +11,11 @@ var Header$ReactTemplate = require("./Header.bs.js");
 var DayUtil$ReactTemplate = require("./DayUtil.bs.js");
 var HelloRe$ReactTemplate = require("./HelloRe.bs.js");
 
+
+  require('./more.css');
+
+;
+
 var today = DayUtil$ReactTemplate.dayInfo(new Date());
 
 var component = ReasonReact.reducerComponent("Calendar");
@@ -118,4 +123,4 @@ exports.today = today;
 exports.component = component;
 exports.make = make;
 exports.jsComponent = jsComponent;
-/* today Not a pure module */
+/*  Not a pure module */
