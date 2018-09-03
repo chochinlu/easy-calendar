@@ -12,7 +12,11 @@
     "webpack:production": "NODE_ENV=production webpack"
   },
   "keywords": [
-    "BuckleScript"
+    "BuckleScript",
+    "calendar",
+    "date",
+    "date-picker",
+    "react"
   ],
   "author": "Cho-Ching Lu <chochinlu@gmail.com>",
   "license": "MIT",
