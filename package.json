@@ -1,6 +1,6 @@
 {
   "name": "easy-calendar",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "calender components written by reason-react",
   "main": "index.js",
   "scripts": {
