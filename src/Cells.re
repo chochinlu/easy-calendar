@@ -54,3 +54,24 @@ let make = (~currentMonth, ~currentYear, ~select, ~selectedDate, _children) => {
       )
     </div>,
 };
+
+[@bs.deriving abstract]
+type jsProps = {
+  currentMonth: int,
+  currentYear: int,
+  [@bs.optional]
+  selectedDate: DayUtil.day,
+  select: DayUtil.day => unit,
+  children: array(ReasonReact.reactElement),
+};
+
+let jsComponent =
+  ReasonReact.wrapReasonForJs(~component, jsProps =>
+    make(
+      ~currentMonth=jsProps |> currentMonthGet,
+      ~currentYear=jsProps |> currentYearGet,
+      ~select=jsProps |> selectGet,
+      ~selectedDate=jsProps |> selectedDateGet,
+      [||],
+    )
+  );

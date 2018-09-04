@@ -8,6 +8,7 @@ var Caml_array = require("bs-platform/lib/js/caml_array.js");
 var Caml_int32 = require("bs-platform/lib/js/caml_int32.js");
 var ReactDOMRe = require("reason-react/src/ReactDOMRe.js");
 var ReasonReact = require("reason-react/src/ReasonReact.js");
+var Js_primitive = require("bs-platform/lib/js/js_primitive.js");
 var Cell$ReactTemplate = require("./Cell.bs.js");
 var DayUtil$ReactTemplate = require("./DayUtil.bs.js");
 
@@ -89,6 +90,10 @@ function make(currentMonth, currentYear, select, selectedDate, _) {
         ];
 }
 
+var jsComponent = ReasonReact.wrapReasonForJs(component, (function (jsProps) {
+        return make(jsProps.currentMonth, jsProps.currentYear, jsProps.select, Js_primitive.undefined_to_opt(jsProps.selectedDate), /* array */[]);
+      }));
+
 exports.component = component;
 exports.firstStartDay = firstStartDay;
 exports.getStartDays = getStartDays;
@@ -97,4 +102,5 @@ exports.renderWeekRow = renderWeekRow;
 exports.renderOneWeek = renderOneWeek;
 exports.renderDays = renderDays;
 exports.make = make;
+exports.jsComponent = jsComponent;
 /* component Not a pure module */
