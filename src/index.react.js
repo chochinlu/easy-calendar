@@ -1,7 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-const Calendar = require("./Calendar.bs").jsComponent;
+// import { jsComponent as Calendar } from "./Calendar.bs";
+// import { Calendar } from "./IndexLib";
+import { Calendar } from "../build/IndexLib";
+
 // const Days = require("./Days.bs").jsComponent;
 
 const element = <Calendar />;

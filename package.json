@@ -1,8 +1,11 @@
 {
   "name": "easy-calendar",
-  "version": "0.0.3",
+  "version": "0.0.6",
   "description": "calender components written by reason-react",
-  "main": "index.js",
+  "files": [
+    "build/indexLib.js"
+  ],
+  "main": "build/indexLib.js",
   "scripts": {
     "build": "bsb -make-world",
     "start": "bsb -make-world -w",
@@ -21,16 +24,19 @@
   "author": "Cho-Ching Lu <chochinlu@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "date-fns": "^1.29.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "reason-react": ">=0.4.0"
+    "date-fns": "^1.29.0"
   },
   "devDependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "reason-react": ">=0.4.0",
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
-    "babel-loader": "^8.0.0",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0",
+    "@babel/plugin-transform-modules-umd": "^7.0.0",
+    "babel-loader": "^8.0.2",
+    "babel-plugin-add-module-exports": "^0.2.1",
     "bs-platform": "^4.0.3",
     "css-loader": "^1.0.0",
     "style-loader": "^0.23.0",

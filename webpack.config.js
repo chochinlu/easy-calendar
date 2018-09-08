@@ -1,12 +1,13 @@
 const path = require("path");
 const outputDir = path.join(__dirname, "build/");
-
+const pkg = require("./package.json");
 const isProd = process.env.NODE_ENV === "production";
 
 module.exports = {
   entry: {
     IndexReact: "./src/Index.react.js",
-    Index: "./src/Index.bs.js"
+    Index: "./src/Index.bs.js",
+    IndexLib: "./src/IndexLib.js"
   },
   mode: isProd ? "production" : "development",
   module: {
@@ -26,6 +27,14 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, "build"),
-    filename: "[name].js"
+    filename: "[name].js",
+    library: pkg.name,
+    libraryTarget: "umd",
+    umdNamedDefine: true,
+    globalObject: "this"
+  },
+  resolve: {
+    modules: [path.resolve("./node_modules"), path.resolve("./src")],
+    extensions: [".json", ".js"]
   }
 };
