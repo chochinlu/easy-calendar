@@ -1,11 +1,11 @@
 {
   "name": "easy-calendar",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "calender components written by reason-react",
   "files": [
-    "build/indexLib.js"
+    "build/IndexLib.js"
   ],
-  "main": "build/indexLib.js",
+  "main": "build/IndexLib.js",
   "scripts": {
     "build": "bsb -make-world",
     "start": "bsb -make-world -w",
