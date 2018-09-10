@@ -2,7 +2,20 @@
 
 A simple calendar component. (powered by [reason-react](https://reasonml.github.io/reason-react/en/))
 
-## Usage
+![screenshot](https://user-images.githubusercontent.com/1825273/45278533-20d11180-b500-11e8-9838-2407805a94d6.png)
+
+## Testing
+
+Clone this repo, then:
+
+```txt
+$ npm start
+$ npm run webpack  // another terminal
+$ open src/index.html // another terminal,  open reason-react version
+$ open src/index.react.html  // open react version
+```
+
+## Usage ( for React )
 
 The easy-calendar uses [mni.css](https://minicss.org/), please add the css binding before use the easy-calendar components:
 
@@ -11,9 +24,7 @@ The easy-calendar uses [mni.css](https://minicss.org/), please add the css bindi
 <meta name="viewport" content="width=device-width, initial-scale=1">
 ```
 
-### Calendar component
-
-React:
+Then:
 
 ```js
 import { Calendar } from "easy-calendar";
