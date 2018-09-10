@@ -7,7 +7,7 @@ module.exports = {
   entry: {
     IndexReact: "./src/Index.react.js",
     Index: "./src/Index.bs.js",
-    IndexLib: "./src/IndexLib.js"
+    indexLib: "./src/indexLib.js"
   },
   mode: isProd ? "production" : "development",
   module: {

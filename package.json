@@ -1,12 +1,13 @@
 {
   "name": "easy-calendar",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "calender components written by reason-react",
   "files": [
-    "build/IndexLib.js"
+    "build/indexLib.js"
   ],
-  "main": "build/IndexLib.js",
+  "main": "build/indexLib.js",
   "scripts": {
+    "cleanBuild": "rimraf build/",
     "build": "bsb -make-world",
     "start": "bsb -make-world -w",
     "clean": "bsb -clean-world",
@@ -41,6 +42,7 @@
     "css-loader": "^1.0.0",
     "style-loader": "^0.23.0",
     "webpack": "^4.0.1",
-    "webpack-cli": "^2.0.10"
+    "webpack-cli": "^2.0.10",
+    "rimraf": "^2.6.2"
   }
 }
