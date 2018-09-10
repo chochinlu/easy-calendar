@@ -2,7 +2,7 @@
 
 A simple calendar component. (powered by [reason-react](https://reasonml.github.io/reason-react/en/))
 
-![screenshot](https://user-images.githubusercontent.com/1825273/45278533-20d11180-b500-11e8-9838-2407805a94d6.png)
+![screenshot](https://user-images.githubusercontent.com/1825273/45278724-064b6800-b501-11e8-9f4b-795ce56c3bcb.png)
 
 ## Testing
 
