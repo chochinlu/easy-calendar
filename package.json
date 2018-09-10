@@ -1,6 +1,6 @@
 {
   "name": "easy-calendar",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "calender components written by reason-react",
   "files": [
     "build/indexLib.js"
