@@ -1,5 +1,4 @@
 const path = require("path");
-const outputDir = path.join(__dirname, "build/");
 const pkg = require("./package.json");
 const isProd = process.env.NODE_ENV === "production";
 
