@@ -20,7 +20,7 @@ $ open src/index.react.html  // open react version
 The easy-calendar uses [mni.css](https://minicss.org/), please add the css binding before use the easy-calendar components:
 
 ```html
-<link rel="stylesheet" href="https://cdn.rawgit.com/Chalarangelo/mini.css/v3.0.0/dist/mini-default.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Chalarangelo/mini.css@v3.0.0/dist/mini-default.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 ```
 
